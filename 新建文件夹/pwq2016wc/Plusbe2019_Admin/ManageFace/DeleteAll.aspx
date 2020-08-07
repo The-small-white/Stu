@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DeleteAll.aspx.cs" Inherits="Admin_ManageUserinfo_Delete" %>

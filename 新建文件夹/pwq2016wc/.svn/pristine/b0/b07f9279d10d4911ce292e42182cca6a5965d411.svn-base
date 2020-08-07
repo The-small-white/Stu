@@ -1,0 +1,97 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Modal.aspx.cs" Inherits="Admin_Manage{首字母大写表名}_Modal" %>
+<%@ Import Namespace="Dejun.DataProvider.Table" %>
+<!DOCTYPE html>
+<html id="kehuhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%=fun.GetSet(1).WebName %></title>
+    <link href="<%=SysConfig.Inspinia %>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/animate.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/style.css" rel="stylesheet">
+    <style>
+        .no-margin-bottom {
+            margin-bottom: 0;
+        }
+
+        .row {
+            background-color: white;
+        }
+		 .gradeX:hover{background-color: #f6f6f6; cursor:pointer} 
+
+
+    </style>
+</head>
+
+<body style="background-color: white;">
+ 
+    <div class="row">
+        <div class="col-lg-12">
+            <form name="theform1" action="Modal.aspx?act=search" method="get">
+                <div class="row">
+                    <div class="col-sm-12">
+
+
+                        <div class="input-group" style="width: 100%"> 
+							{循环3}{搜索字段}
+							{弹出框搜索表单字符串}
+							{结束搜索字段}{结束循环3}  
+                            <span class="input-group-btn" style="float: left;">
+                                <button type="submit" class="btn btn-sm btn-primary">搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+         
+                <table class="footable table table-stripped toggle-arrow-tiny no-margin-bottom" data-page-size="10" data-filter="#filter">
+                    <thead>
+                        <tr  style="font-weight: bolder"> 
+                            {循环1}{首页显示}<td>{中文列名}</td>
+                            {结束首页显示}{结束循环1}
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <asp:repeater id="Repeater1" runat="server" DataSource="<%# m_{首字母小写表名}List %>">
+                                                <ItemTemplate>
+                                                    <tr class="gradeX" id="tr_<%#(({首字母大写表名})Container.DataItem).{第一列首字母大写列名} %>"  onclick="window.parent.modal_submit(<%#(({首字母大写表名})Container.DataItem).{第一列首字母大写列名} %>, '<%# (({首字母大写表名})Container.DataItem).{第一列首字母大写列名}%>');">
+                                                       {循环2}{首页显示}
+                                                        <td><%# (({首字母大写表名})Container.DataItem).{首字母大写列名}%></td>
+                                                       {结束首页显示}{结束循环2}
+                                                    </tr>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+ 
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="{首页列数+2}"><%#this.GetPagingHtml(8) %></td>
+                        </tr>
+                    </tfoot>
+                </table>
+        
+        </div>
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="<%=SysConfig.Inspinia %>js/jquery-3.1.1.min.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/bootstrap.min.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/footable/footable.all.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="<%=SysConfig.Inspinia %>js/inspinia.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/pace/pace.min.js"></script>
+
+</body>
+
+
+</html>

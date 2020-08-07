@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    注意: 除了手动编辑此文件以外，您还可以使用 
+    Web 管理工具来配置应用程序的设置。可以使用 Visual Studio 中的
+     “网站”->“Asp.Net 配置”选项。
+    设置和注释的完整列表在 
+    machine.config.comments 中，该文件通常位于 
+    \Windows\Microsoft.Net\Framework\v2.x\Config 中
+-->
+<configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
+  <configSections>
+    <section name="urlrewritingnet" requirePermission="false" type="UrlRewritingNet.Configuration.UrlRewriteSection, UrlRewritingNet.UrlRewriter" />
+    <sectionGroup name="elmah">
+      <section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah" />
+      <section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah" />
+      <section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah" />
+      <section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah" />
+    </sectionGroup>
+  </configSections>
+  <elmah>
+    <security allowRemoteAccess="0" />
+    <errorLog type="Elmah.SqlErrorLog, Elmah" connectionStringName="ElmahconnectionString" />
+    <errorFilter>
+      <test>
+        <and>
+          <!--过滤400到499的错误 部分url转发可能会引发404错误 -->
+          <greater binding="HttpStatusCode" value="399" type="Int32" />
+          <lesser binding="HttpStatusCode" value="500" type="Int32" />
+          <!--过滤404错误
+                <equal binding="HttpStatusCode" value="404" type="Int32" />
+          -->
+        </and>
+      </test>
+    </errorFilter>
+  </elmah>
+  <!--数据库配置-->
+  <connectionStrings>
+    <add name="Database" connectionString="Data Source=192.168.60.254;Initial Catalog=PlusbeCloud;Persist Security Info=True;User ID=Plusbe_Cloud;Password=plusbemygoogle2019" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <urlrewritingnet rewriteOnlyVirtualUrls="false" contextItemsPrefix="QueryString" defaultPage="default.aspx" defaultProvider="RegEx" xmlns="http://www.urlrewriting.net/schemas/config/2006/07">
+    <rewrites />
+  </urlrewritingnet>
+  <system.web>
+    <!-- 
+            设置 compilation debug="true" 将调试符号插入
+            已编译的页面中。但由于这会 
+            影响性能，因此只在开发过程中将此值 
+            设置为 true。
+        -->
+    <!--<identity impersonate="true"/>-->
+    <sessionState timeout="20" />
+    <!--<sessionState mode="StateServer" stateConnectionString="tcpip=127.0.0.1:42424" sqlConnectionString="data source=127.0.0.1;Trusted_Connection=yes" cookieless="false" timeout="20"/>-->
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+      </assemblies>
+    </compilation>
+    <!--
+            通过 <authentication> 节可以配置 ASP.NET 使用的 
+            安全身份验证模式，
+            以标识传入的用户。 
+    -->
+    <authentication mode="Forms" />
+    <!--可接收的最大文件配置,单位为kb,1M=1024kb|||以及超时时间设置-->
+    <httpRuntime enableVersionHeader="false" maxRequestLength="2097151" executionTimeout="3600"   />
+    <!--错误页配置:RemoteOnly-管理员可见错误详情; On-所有人都不可见错误详情; Off-所有人都可见错误详情-->
+    <customErrors defaultRedirect="ErrorPage/error.html" mode="RemoteOnly">
+      <error statusCode="404" redirect="ErrorPage/404.html" />
+      <error statusCode="500" redirect="ErrorPage/500.html" />
+    </customErrors>
+    <globalization requestEncoding="utf-8" responseEncoding="utf-8" culture="zh-CN" fileEncoding="utf-8" />
+    <httpModules>
+      <add name="UrlRewriteModule" type="UrlRewritingNet.Web.UrlRewriteModule, UrlRewritingNet.UrlRewriter" />
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" />
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" />
+    </httpModules>
+    <httpHandlers>
+      <add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" />
+    </httpHandlers>
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID" validateRequest="false" />
+    <machineKey validation="AES"/>
+    <httpCookies httpOnlyCookies="true"></httpCookies>
+  </system.web>
+  <system.webServer>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-Frame-Options" value="SAMEORIGIN" />
+        <remove name="X-Powered-By" />
+      </customHeaders>
+    </httpProtocol>
+    <validation validateIntegratedModeConfiguration="false" />
+    <staticContent>
+      <remove fileExtension=".woff" />
+      <mimeMap fileExtension=".woff" mimeType="font/x-font-woff" />
+      <remove fileExtension=".woff2" />
+      <mimeMap fileExtension=".woff2" mimeType="font/x-font-woff2" />
+      <remove fileExtension=".mp4" />
+      <mimeMap fileExtension=".mp4" mimeType="video/mp4" />
+      <mimeMap fileExtension=".mkv" mimeType="video/x-matroska" />
+    </staticContent>
+    <security>
+      <!--最大的附件大小,单位为B,约30M      removeServerHeader ="true" IIS10有效-->
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="3000000000"  />
+        <!--在IIS中禁用HTTP OPTIONS-->
+        <verbs allowUnlisted="true">
+          <add verb="OPTIONS" allowed="false" />
+        </verbs>
+      </requestFiltering>
+    </security>
+    <!--初始页配置-->
+    <defaultDocument>
+      <files>
+        <clear />
+        <add value="Default.aspx" />
+        <add value="index.aspx" />
+        <add value="index.html" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+  <runtime xmlns="">
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="MySql.Data" publicKeyToken="c5687fc88969c44d" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.0.8.1" newVersion="5.0.8.1" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Extensions" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.0.61025.0" newVersion="1.0.61025.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Extensions.Design" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.0.61025.0" newVersion="1.0.61025.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <appSettings>
+    <!--验证ref请求防止CSRF-->
+    <add key="CSRF" value=""/>
+    <!--前台域名-->
+    <add key="Key" value=""/>
+  </appSettings>
+</configuration>

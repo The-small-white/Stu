@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ChangeSortOrder.aspx.cs" Inherits="Admin_ManageNews_ChangeSortOrder" %>

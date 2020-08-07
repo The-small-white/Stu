@@ -1,0 +1,47 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using Dejun.DataProvider;
+using Dejun.DataProvider.Table;
+using Dejun.DataProvider.Sql2005;
+using System.Web.Script.Serialization;
+
+
+
+public partial class Admin_Manage{首字母大写表名}_Delete : AdminPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Result result = new Result();
+
+        //判断是否有客户管理权限
+        //if (!AdminMethod.HasManage("kehu"))
+        //{
+        //    result.msg = "无权限";
+        //}
+
+        if (string.IsNullOrEmpty(this.Request["{第一列小写列名}"]))
+        {
+            result.msg = "请选择要删除的对象";
+            return;
+        }
+        int {第一列小写列名} = Convert.ToInt32(this.Request["{第一列小写列名}"]);
+
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        
+        if (TableOperate<{首字母大写表名}>.Delete({第一列小写列名}) > 0)
+            result.isOk = true;
+        else
+            result.msg = "删除失败";
+        Response.ContentType = "text/json";
+        Response.Write(js.Serialize(result));
+        Response.End();
+    }
+}

@@ -1,0 +1,111 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using Dejun.DataProvider;
+using Dejun.DataProvider.Table;
+using Dejun.DataProvider.Sql2005;
+using System.Collections.Generic;
+using System.Text;
+using System.Web.Script.Serialization;
+
+public partial class Admin_Manage{首字母大写表名}_Edit : AdminPage
+{
+    protected string error = "";
+    protected string m_editStr = "添加";
+    protected {首字母大写表名} {首字母小写表名} = new {首字母大写表名}();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //if (!AdminMethod.HasManage("kehu"))
+        //{
+        //    Response.Write("<script>alert('无权限');location.href='" + ReturnUrl + "'<script>");
+        //    Response.End();
+        //    return;
+        //}
+
+        if (this.Request["action"] != "save")
+        {
+            
+            {循环3}{设置值表单条件字符串}{结束循环3}   
+			 
+            if (!string.IsNullOrEmpty(this.Request["{第一列小写列名}"]))
+            {
+                m_editStr = "编辑";
+                int _{第一列小写列名} = Convert.{第一列类型转化字符}(this.Request["{第一列小写列名}"]);
+                error = this.Request["error"];
+                {首字母大写表名} condition = new {首字母大写表名}();
+                condition.{第一列首字母大写列名} = _{第一列小写列名};
+                {首字母小写表名} = TableOperate<{首字母大写表名}>.GetRowData(condition); 
+
+				{第一列小写列名}.Value=  Convert.ToString({首字母小写表名}.{第一列首字母大写列名});
+                {不显示默认循环1}
+				{设置值表单字符串}
+				{结束不显示默认循环1}
+
+                DataBind();
+            }
+            else
+            {
+                //添加
+                error = this.Request["error"];
+                DataBind();
+            }
+        }
+        else//保存时
+        {
+            {首字母大写表名} new{首字母大写表名} = new {首字母大写表名}();
+            new{首字母大写表名}.{第一列首字母大写列名} = 0;
+            new{首字母大写表名}.AutoForm(this.Page);
+            {循环4}{设置上传文件列表表单}{结束循环4}
+
+            {第一列列名NET类型} _{第一列小写列名};
+            if (!string.IsNullOrEmpty(this.Request["{第一列小写列名}"]))
+            { 
+                _{第一列小写列名} = Convert.{第一列类型转化字符}(this.Request["{第一列小写列名}"]);
+                TableOperate<{首字母大写表名}>.Update(new{首字母大写表名});
+            }
+            else
+            {
+                new{首字母大写表名}.AddTime = DateTime.Now; 
+                new{首字母大写表名}.AddID = AdminMethod.AdminID; 
+                
+
+				{循环5}{设置值数字默认值}{结束循环5}
+				
+                _{第一列小写列名} = TableOperate<{首字母大写表名}>.InsertReturnID(new{首字母大写表名});
+
+				{添加审批流程}
+            }
+
+            //发送钉钉消息
+
+            Result result = new Result();
+            if (_{第一列小写列名} > 0)
+                result.isOk = true;
+            else
+                result.msg = "操作失败";
+
+            Response.ContentType = "text/json";
+            Response.Write(new JavaScriptSerializer().Serialize(result));
+            Response.End();
+        }
+    }
+
+   
+    protected string SetSelected(string value, string oldvalue)
+    {
+        return value == oldvalue ? "selected=\"selected\"" : "";
+    }
+
+    protected string SetChecked(string value, string oldvalue)
+    {
+        return value == oldvalue ? "checked" : "";
+    }
+}

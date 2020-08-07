@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FacePic.aspx.cs" Inherits="Plusbe2019_Admin_UpFaceApi_FacePic" %>

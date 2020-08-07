@@ -1,0 +1,292 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Edit.aspx.cs" Inherits="Admin_Manage{首字母大写表名}_Edit" {是否带有可视化编辑器} %>
+
+<%@ Register Src="~/Plusbe_administrator/Head.ascx" TagName="header" TagPrefix="u1" %>
+<%@ Register Src="~/Plusbe_administrator/Top.ascx" TagName="top" TagPrefix="u2" %>
+<%@ Register Src="~/Plusbe_administrator/Foot.ascx" TagName="footer" TagPrefix="u3" %>
+<%@ Import Namespace="Dejun.DataProvider.Table" %>
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%=fun.GetSet(1).WebName %></title>
+    <link href="<%=SysConfig.Inspinia %>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/animate.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/style.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/bootstrap-markdown/bootstrap-markdown.min.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/datapicker/datepicker3.css" rel="stylesheet" />
+
+	<link href="<%=SysConfig.Inspinia %>css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+    <link href="<%=SysConfig.Inspinia %>css/plugins/blueimp/css/blueimp-gallery-video.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <u1:header ID="header" runat="server" />
+        <%--左侧栏--%>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <u2:top ID="top" runat="server" />
+                <%--顶部信息--%>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2><%#m_editStr %>{中文表名}</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="../index.aspx">主页</a>
+                        </li>
+                        <li>
+                            <a>{中文表名}</a>
+                        </li>
+                        <li>
+                            <a><%#m_editStr %>{中文表名}</a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <form name="theform" id="theform" class="form-horizontal" method="post" role="form" action="Edit.aspx">
+
+                                    <input  name="{第一列小写列名}"  id="{第一列小写列名}" type="hidden"  runat="server">
+                                    <input name="action" value="save" type="hidden" /> 
+	                                <input name="reurl" value="<%# ReturnUrl %>" type="hidden" /> 
+                                  
+                                    {不显示默认循环1}                                                                            
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{中文列名}</label>
+                                        <div class="{列的长度}">
+                                                {添加和更新表单字符串}
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    {结束不显示默认循环1}
+                                      
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-white" type="button" onclick="history.go(-1)">返回</button>
+                                            <button class="btn btn-primary" type="button" onclick="CheckForm()"><%=m_editStr %>信息</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <u3:footer ID="foot" runat="server" />
+
+        </div>
+    </div>
+
+
+          <div class="modal fade" id="modal_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modal_title">选择</h4>
+                     <input type="hidden" name="modal_id_input" id="modal_id_input" value="" />
+                     <input type="hidden" name="modal_name_input" id="modal_name_input" value="" />
+                </div>
+                <div class="modal-body">
+                    <iframe src="" name="modal_url" id="modal_url" style="width: 100%; min-height: 460px;" frameborder="no" border="0"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="modal_select_null()">选择空</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div id="blueimp-gallery" class="blueimp-gallery">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev"></a>
+        <a class="next"></a>
+        <a class="close"></a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="<%=SysConfig.Inspinia %>js/jquery-3.1.1.min.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/bootstrap.min.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="<%=SysConfig.Inspinia %>js/plugins/footable/footable.all.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="<%=SysConfig.Inspinia %>js/inspinia.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="<%=SysConfig.Inspinia %>js/plugins/iCheck/icheck.min.js"></script>
+    <!-- Jquery Validate -->
+    <script src="<%=SysConfig.Inspinia %>js/plugins/validate/jquery.validate.min.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="<%=SysConfig.Inspinia %>js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="../Inspinia/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="../js/selectArea/Popt.js"></script>
+    <script src="../js/selectArea/cityJson.js"></script>
+    <script src="../js/selectArea/citySet.js"></script>
+    <link href="../js/selectArea/city.css" rel="stylesheet" />
+    <script src="../js/alertMessage/message.js"></script>
+    <link href="../js/alertMessage/message.css" rel="stylesheet" />
+	<script src="../Inc/CheckInput.js"></script>
+	<script src="<%=SysConfig.Inspinia %>js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+    <script src="<%=SysConfig.Inspinia %>js/plugins/blueimp/js/blueimp-gallery-video.js"></script>
+    <script>
+        $(".address").click(function (e) {
+            SelCity(this, e);
+        });
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+            });
+
+            $('.form-datetime').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+        });
+
+        function CheckForm() {
+ 
+			var data = $('#theform').serializeArray();
+           var required = $('.required');
+            for (var i = 0; i < required.length; i++) {
+                
+                if (!$(required[i]).val()) {
+                    if($(required[i]).attr("readonly") == "readonly"){
+                         $.message({ message: "请选择" + $(required[i]).attr("requiredName"), type: 'error' });
+                    }else{
+                        $.message({ message: $(required[i]).attr("requiredName") + "不能为空", type: 'error' });
+                    }
+                    required[i].focus();
+                    return false;
+                }
+            }
+//             
+            required = $('.checkfloat');
+            for (var i = 0; i < required.length; i++) { 
+                if (!isDecimal($(required[i]).val())) {
+                    $.message({ message: $(required[i]).attr("requiredName") + "必须为数字", type: 'error' });
+                    required[i].focus();
+                    return false;
+                } 
+            }
+
+            required = $('.checkint');
+            for (var i = 0; i < required.length; i++) { 
+                if (!isInteger($(required[i]).val())) {
+                    $.message({ message: $(required[i]).attr("requiredName") + "必须为整字", type: 'error' });
+                    required[i].focus();
+                    return false;
+                } 
+            }
+
+            console.log(data);
+            $.post('edit.aspx', $('#theform').serialize(), function (result) {
+                console.log(result);
+                if (result.isOk) {
+                    if (document.referrer) {
+                        $.message('操作成功,即将跳转...');
+                        setTimeout(function () {
+                            location.href = document.referrer;
+                        }, 500)
+                    } else {
+                        $.message('操作成功');
+                    }
+                } else {
+                    $.message({ message: result.msg, type: 'error' });
+                }
+            });
+        }
+
+         //弹出选择框
+         $('.form-showpanel').click(function () {
+           $('#modal_title').text($(this).attr("modal_title"));  
+           $('#modal_url')[0].src= $(this).attr("modal_url");  
+           $('#modal_id_input').val("#"+ $(this).attr("vid"));
+           $('#modal_name_input').val("#"+$(this).attr("id"));
+ 
+            $('#modal_panel').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        })
+
+        //弹出面板点击确定
+        function modal_submit(id, name) {
+            $($('#modal_id_input').val()).val(id);
+            $($('#modal_name_input').val()).val(name);
+            $('#modal_panel').modal('hide');
+        }
+
+        //弹出面板点击选择空
+        function modal_select_null() {
+
+            $($('#modal_id_input').val()).val("");
+            $($('#modal_name_input').val()).val("");
+            $('#modal_panel').modal('hide');
+        }
+
+		function deleteFile(obj) { 
+            $(obj).parent().parent().parent().remove();
+        }
+
+
+        function downloadFile(obj) { 
+            var name = $(obj).parent().next().val();
+            location.href = '../DownLoad.ashx?name=' + name;
+        }
+    </script>
+
+
+    <!-- Page-Level Scripts -->
+    <script>
+        function onlyDouble(obj) {
+            obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+            obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+            obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+            obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        }
+
+        function onlyInt(obj) {
+            if (!/^\d+$/.test(obj.value)) { obj.value = obj.value.replace(/[^\d]+/g, ''); }
+        }
+
+    </script>
+
+	<script src="<%=SysConfig.Inspinia %>/js/plugins/bootstrap-markdown/bootstrap-markdown.js"></script>
+    <script src="<%=SysConfig.Inspinia %>/js/plugins/bootstrap-markdown/markdown.js"></script>
+
+</body>
+
+</html>

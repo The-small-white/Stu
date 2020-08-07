@@ -1,0 +1,68 @@
+﻿<%@ WebHandler Language="C#" Class="Admin_Manage{首字母大写表名}_Excel" %>
+using System;
+using System.Web;
+using Dejun.DataProvider.Sql2005;
+using Dejun.DataProvider.Table;
+using System.Collections.Generic;
+
+
+public class Admin_Manage{首字母大写表名}_Excel : IHttpHandler, System.Web.SessionState.IRequiresSessionState
+{
+    
+    public void ProcessRequest (HttpContext context) {
+
+        if (!AdminMethod.IsAuthenticated)
+        {
+            context.Response.Redirect(SysConfig.AdminPath + "login.aspx");
+        }
+        {首字母大写表名} condition = new {首字母大写表名}();
+        {首字母大写表名} value = new {首字母大写表名}();
+        
+        List<{首字母大写表名}> m_{首字母小写表名}List;
+        
+ 		{循环1}{设置搜索表单查询条件1}{结束循环1}
+	
+        m_{首字母小写表名}List = TableOperate<{首字母大写表名}>.SelectByIdDesc(value, condition);
+         
+ 
+
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        {循环2}    	 
+        dic.Add("{列名}", "{中文列名}");
+    	{结束循环2}
+        
+        NPOIHelp npoi = new NPOIHelp();
+        npoi.AddSheet<{首字母大写表名}>(m_{首字母小写表名}List, dic, "{中文表名}");
+        System.IO.MemoryStream stream = npoi.ToExcel();
+
+        context.Response.ContentType = "application/octet-stream";
+        context.Response.AddHeader("Content-Disposition", "attachment; filename=" + HttpUtility.UrlEncode("{中文表名}.xls", System.Text.Encoding.UTF8));
+        context.Response.BinaryWrite(stream.ToArray());
+        context.Response.Flush();
+        context.Response.End();
+         
+    }
+
+     
+ 
+    protected string GetStrFrom(string name)
+    {
+        if (string.IsNullOrEmpty(HttpContext.Current.Request[name]))
+        {
+            return "";
+        }
+        else
+        {
+            return HttpContext.Current.Request[name];
+        }
+    }
+
+     
+ 
+    public bool IsReusable {
+        get {
+            return false;
+        }
+    }
+
+}

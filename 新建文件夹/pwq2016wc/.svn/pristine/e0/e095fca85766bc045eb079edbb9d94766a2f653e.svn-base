@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="weixinRes.aspx.cs" Inherits="Reserve_weixinRes" %>

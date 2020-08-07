@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Camera1.aspx.cs" Inherits="API_HK_Camera" %>

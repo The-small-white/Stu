@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="lightList.aspx.cs" Inherits="lightList" %>
