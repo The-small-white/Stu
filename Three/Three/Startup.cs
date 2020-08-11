@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Three.Service;
+using Three.Services;
 
 namespace Three
 {
@@ -22,8 +23,11 @@ namespace Three
                 //不需要了解具体的服务类
                 //也不需要管理服务类的生命周期
             services.AddControllersWithViews();//开发mvc类型用的
+            //注入路径
             services.AddSingleton<IClock, ChinaClock>();//只能有一个实例
-           // services.AddSingleton<IClock,UtcClock>();
+            services.AddSingleton<IDepartmentService, DepartmentService>();
+            services.AddSingleton<IEmployeeService, EmployeeService>();
+            // services.AddSingleton<IClock,UtcClock>();
 
 
 
@@ -42,7 +46,7 @@ namespace Three
             }
 
 
-
+            //注意顺序！！！
             app.UseStaticFiles();//访问静态文件中间件
             app.UseHttpsRedirection();//强制转换成https请求
             app.UseAuthentication();//身份认证中间件
@@ -51,7 +55,7 @@ namespace Three
 
             app.UseRouting();//路由中间件
 
-            //端点中间件
+            //(http请求)端点中间件
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapGet("/", async context =>
