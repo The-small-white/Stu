@@ -34,7 +34,7 @@ namespace Three
             services.AddSingleton<IClock, ChinaClock>();//只能有一个实例
             services.AddSingleton<IDepartmentService, DepartmentService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
-            services.Configure<ThreeOptions>(_configuration.GetSection("Font"));
+            services.Configure<ThreeOptions>(_configuration.GetSection("Font"));//映射字号类
             // services.AddSingleton<IClock,UtcClock>();
 
             // services.AddControllers();//如果只开发webApi之类的用这个就可以
