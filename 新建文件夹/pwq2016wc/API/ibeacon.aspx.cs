@@ -19,8 +19,8 @@ public partial class ibeacon : System.Web.UI.Page
             devlist = TableOperate<IBeaconDev>.Select();
             gatewaylist = TableOperate<IBeaconGateWay>.Select();
 
-            Stream postData = Request.InputStream;
-            var rawObject = Unpacking.UnpackObject(postData);
+            Stream postData = Request.InputStream;//创建流  获取传入的 HTTP 实体主体的内容。
+            var rawObject = Unpacking.UnpackObject(postData);//拆包解压缩
 
             jsoner = rawObject.ToString();
             

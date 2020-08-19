@@ -190,6 +190,9 @@
             });
             location.href = 'DownFiles.aspx?iD=' + ids;
         })
+
+
+
         $('#refresh').click(function () {
             location.reload();
         })

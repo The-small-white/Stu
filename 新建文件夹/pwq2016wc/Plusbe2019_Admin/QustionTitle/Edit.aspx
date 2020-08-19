@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Edit.aspx.cs" Inherits="Plusbe2019_Admin_ManageNews_Edit" %>
+
 <%@ Import Namespace="Dejun.DataProvider.Table" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%=SysConfig.WebTitle %></title>
 
-    <link rel="shortcut icon" href="<%=SysConfig.Hui %>favicon.ico"> 
+    <link rel="shortcut icon" href="<%=SysConfig.Hui %>favicon.ico">
     <link href="<%=SysConfig.Hui %>css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="<%=SysConfig.Hui %>css/plugins/chosen/chosen.css" rel="stylesheet">
     <link href="<%=SysConfig.Hui %>css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -22,38 +23,38 @@
 </head>
 
 <body class="gray-bg">
-<div class="wrapper wrapper-content animated fadeInRight">
-    
-    
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="ibox float-e-margins">
-                
-                <div class="ibox-content">
-                    <form method="post" class="form-horizontal"  name="theform" id="theform" action="Edit.aspx">
-                        <input name="iD" id="iD" type="hidden" runat="server">
-                        <input name="action" value="save" type="hidden" />
-                      
-                        <input type="hidden" id="Size" value="<%#news.FileSize %>" name="FileSize" />
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">标题：</label>
+    <div class="wrapper wrapper-content animated fadeInRight">
 
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control required" name="title" id="title" data-name="标题" value="<%#news.Title %>"  />
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" name="theform" id="theform" action="Edit.aspx">
+                            <input name="iD" id="iD" type="hidden" runat="server">
+                            <input name="action" value="save" type="hidden" />
+
+                            <input type="hidden" id="Size" value="<%#news.FileSize %>" name="FileSize" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">标题：</label>
+
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control required" name="title" id="title" data-name="标题" value="<%#news.Title %>" />
+                                </div>
                             </div>
-                        </div>
-                                <div class="form-group">
-                            <label class="col-sm-2 control-label">上传文件：</label>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">上传文件：</label>
 
-                            <div class="col-sm-10">
-                                <div id="uploader">
-                <div class="queueList">
-                    <div id="dndArea" class="placeholder">
+                                <div class="col-sm-10">
+                                    <div id="uploader">
+                                        <div class="queueList">
+                                            <div id="dndArea" class="placeholder">
 
-                        <div id="filePicker"></div>
-                       <%-- <p>或将文件拖到这里，单次允许300文件！</p>--%>
-                    </div>
-                    <%--<ul class="filelist">
+                                                <div id="filePicker"></div>
+                                                <%-- <p>或将文件拖到这里，单次允许300文件！</p>--%>
+                                            </div>
+                                            <%--<ul class="filelist">
                         <li id="WU_FILE_0">
                             <p class="title">p_big2.jpg</p>
                             <p class="imgWrap">
@@ -69,45 +70,50 @@
                         </li>
 
                     </ul>--%>
-                </div>
+                                        </div>
 
-                <div class="statusBar" style="display:none;">
-                    <div class="progress">
-                        <span class="text">0%</span>
-                        <span class="percentage"></span>
-                    </div><div class="info"></div>
-                    <div class="btns">
-                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
-                    </div>
-                    <div class="info2" style="line-height: 18px;color:Red;height:20px;"></div>
-                </div>
-                 
-                </div>
-                                <input type="text" id="upload" class="form-control " data-name="文件路径" name="files" value="<%#news.Files %>"  />
-                            </div>
-                        </div>
-                      <div class="form-group">
-                            <label class="col-sm-2 control-label">所属分类：</label>
+                                        <div class="statusBar" style="display: none;">
+                                            <div class="progress">
+                                                <span class="text">0%</span>
+                                                <span class="percentage"></span>
+                                            </div>
+                                            <div class="info"></div>
+                                            <div class="btns">
+                                                <div id="filePicker2"></div>
+                                                <div class="uploadBtn">开始上传</div>
+                                            </div>
+                                            <div class="info2" style="line-height: 18px; color: Red; height: 20px;"></div>
+                                        </div>
 
-                            <div class="col-sm-5">
-                                 <select class="chosen-select" name="TypeID"    id="TypeID" style="width:180px;">
-                                     <asp:Repeater ID="repeater" runat="server" DataSource="<%#m_ExhibitionList %>">
-                                       <ItemTemplate>
-                                       <option  value="<%#((QuestionType)Container.DataItem).ID %>" <%# SysConfig.Selected(((QuestionType)Container.DataItem).ID+"",news.TypeID+"") %> <%# ((QuestionType)Container.DataItem).Child?"disabled":""%>>
-                                         <%# QusetionProvider.GetDepth(((QuestionType)Container.DataItem).Depth)%>
-                                         <%#((QuestionType)Container.DataItem).Name %>
-                                     </option>
-                                      </ItemTemplate>
-                                       </asp:Repeater>
-                                </select>
+                                    </div>
+                                    <input type="text" id="upload" class="form-control " data-name="文件路径" name="files" value="<%#news.Files %>" />
+                                </div>
                             </div>
-                        </div>
-                         <div id="answer">
-                             <div class="form-group" >
-                            <label class="col-sm-2 control-label">选项：</label>
-                              <div class="col-sm-10">
-                                  <button type="button" class="btn btn-w-m btn-white" onclick="add();">添加选项</button>
-                              <%--<div class="input-group m-b">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">所属分类：</label>
+
+                                <div class="col-sm-5">
+                                    <select class="chosen-select" name="TypeID" id="TypeID" style="width: 180px;">
+                                        <asp:Repeater ID="repeater" runat="server" DataSource="<%#m_ExhibitionList %>">
+                                            <ItemTemplate>
+                                                <option value="<%#((QuestionType)Container.DataItem).ID %>"
+                                                    <%# SysConfig.Selected(((QuestionType)Container.DataItem).ID+"",news.TypeID+"") %>
+                                                    <%# ((QuestionType)Container.DataItem).Child?"disabled":""%>>
+                                                    <%# QusetionProvider.GetDepth(((QuestionType)Container.DataItem).Depth)%>
+                                                    <%#((QuestionType)Container.DataItem).Name %>
+                                                </option>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="answer">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">选项：</label>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn btn-w-m btn-white" onclick="add();">添加选项</button>
+                                        <%--<div class="input-group m-b">
                                  
                                   <span class="input-group-addon">
                                        <input type="hidden" value="0" name="truelist" />
@@ -117,37 +123,37 @@
                                    <input type="text" class="form-control required" data-name="选项" name="answer"> 
                                    <span class="input-group-addon" onclick="add();">增加</span>
                               </div>--%>
-                              </div>
-                           </div>
-                             <%=GetList() %>
-                         </div>
-                          
-                         <div class="form-group">
-                            <label class="col-sm-2 control-label">答案解析：</label>
-                            <div class="col-sm-8">
-                                 <textarea  name="brief" class="form-control"  aria-required="true"><%#news.Brief %></textarea>
-                                <span class="help-block m-b-none"></span>
+                                    </div>
+                                </div>
+                                <%=GetList() %>
                             </div>
-                        </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">答案解析：</label>
+                                <div class="col-sm-8">
+                                    <textarea name="brief" class="form-control" aria-required="true"><%#news.Brief %></textarea>
+                                    <span class="help-block m-b-none"></span>
+                                </div>
+                            </div>
 
 
-                  
-        
-                
-                        <div class="form-group">
-                            <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary" type="button" id="post"><i class="fa fa-check"></i>&nbsp;提交</button>
-                                <button class="btn btn-white" type="button" id="closeIframe"><i class="fa fa-close"></i>&nbsp;取消</button>
+
+
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="button" id="post"><i class="fa fa-check"></i>&nbsp;提交</button>
+                                    <button class="btn btn-white" type="button" id="closeIframe"><i class="fa fa-close"></i>&nbsp;取消</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-    
+
     <script src="<%=SysConfig.AdminPath %>MingApp/Scripts/jquery.js" type="text/javascript"></script>
     <script src="<%=SysConfig.AdminPath %>MingApp/Scripts/webuploader0.1.6.js" type="text/javascript"></script>
     <script src="<%=SysConfig.AdminPath %>MingApp/Scripts/upload.js" type="text/javascript"></script>
@@ -158,103 +164,102 @@
 
     <!-- 自定义js -->
     <script src="<%=SysConfig.Hui %>js/content.js?v=1.0.0"></script>
-      <script src="<%=SysConfig.Hui %>js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="<%=SysConfig.Hui %>js/plugins/chosen/chosen.jquery.js"></script>
 
     <!-- iCheck -->
     <script src="<%=SysConfig.Hui %>js/plugins/iCheck/icheck.min.js"></script>
 
     <!-- Peity -->
     <script src="<%=SysConfig.Hui %>js/demo/peity-demo.js"></script>
-     <script src="<%=SysConfig.Hui %>js/layer-v3.1.1/layer/layer.js"></script>
-    
-<script>
-    $(document).ready(function ()
-    {
-        $('#TypeID').chosen({
+    <script src="<%=SysConfig.Hui %>js/layer-v3.1.1/layer/layer.js"></script>
 
-        });
+    <script>
+        $(document).ready(function () {
+            $('#TypeID').chosen({
 
-        var index = parent.layer.getFrameIndex(window.name); 
-        $(".i-checks").iCheck({ checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green", })
-        $("#closeIframe").click(function () {
-            parent.layer.close(index);
-        });
-        $(".label").click(function () {
-            var $this = $(this);
-            var html = $this.attr("title");
-            $("#JsonStr").val(html);
-        });
-        $("#post").click(function ()
-        {
-            var required = $('.required');
-            for (var i = 0; i < required.length; i++) {
-                if (!$(required[i]).val()) {
-                    $(required[i]).focus();
-                    parent.layer.msg($(required[i]).data('name') + '不能为空', function () {
+            });
+
+            var index = parent.layer.getFrameIndex(window.name);
+            $(".i-checks").iCheck({ checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green", })
+            $("#closeIframe").click(function () {
+                parent.layer.close(index);
+            });
+            $(".label").click(function () {
+                var $this = $(this);
+                var html = $this.attr("title");
+                $("#JsonStr").val(html);
+            });
+            $("#post").click(function () {
+                var required = $('.required');
+                for (var i = 0; i < required.length; i++) {
+                    if (!$(required[i]).val()) {
+                        $(required[i]).focus();
+                        parent.layer.msg($(required[i]).data('name') + '不能为空', function () {
+                            //关闭后的操作
+                        });
+                        return false;
+                    }
+                }
+                if ($("input:checkbox[name='box']:checked").length == 0) {
+                    parent.layer.msg('请至少设置一个正确答案', function () {
                         //关闭后的操作
                     });
                     return false;
                 }
-            }
-            if ($("input:checkbox[name='box']:checked").length == 0) {
-                parent.layer.msg('请至少设置一个正确答案', function () {
-                    //关闭后的操作
+                var truelist = $("input[name='box']");
+
+                for (var i = 0; i < truelist.length; i++) {
+                    if ($(truelist[i]).is(':checked')) {
+                        //alert($(truelist[i]).prev().val());
+                        $(truelist[i]).prev().val('1');
+                    }
+
+                }
+
+                $.post('edit.aspx', $('#theform').serialize(), function (result) {
+                    if (!result.isOk) {
+                        parent.layer.msg(result.msg, { time: 2000 });
+                    }
+                    else {
+                        parent.layer.msg(result.msg, {
+                            icon: 1,
+                            time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            parent.layer.close(index);
+                            parent.location.reload();
+
+                        });
+
+                    }
                 });
-                return false;
-            }
-            var truelist = $("input[name='box']");
-           
-            for (var i = 0; i < truelist.length; i++)
-            {
-                if ($(truelist[i]).is(':checked'))
-                {
-                    //alert($(truelist[i]).prev().val());
-                    $(truelist[i]).prev().val('1');
-                }
-               
-            }
+            })
 
-            $.post('edit.aspx', $('#theform').serialize(), function (result) {
-                if (!result.isOk)
-                {
-                    parent.layer.msg(result.msg,{time:2000});
-                }
-                else {
-                    parent.layer.msg(result.msg, {
-                        icon: 1,
-                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
-                    }, function ()
-                    {
-                        parent.layer.close(index);
-                        parent.location.reload();
-                        
-                    });
 
-                }
-            });
-        })
-        
+        });
 
-    });
-    function del(obj) {
-        $(obj).parent().parent().parent().remove();
-    }
-    function add() {
-        var str = '<div class="form-group">';
-        str += '<label class="col-sm-2 control-label"></label>';
-        str += '<div class="col-sm-10">';
-        str += '<div class="input-group m-b">';
-        str += '<span class="input-group-addon">';
-        str += '<input type="hidden" value="0" name="truelist" />';
-        str += '<input type="checkbox" name="box"  >正确</span > ';
-        str += '<input type="text" class="form-control required" data-name="选项" name="answer">';
-        str += '<span class="input-group-addon" onclick="del(this);">删除</span>';
-        str += '</div>';
-        str += ' </div>';
-        str += ' </div>';
-        $("#answer").append(str);
-    }
-</script>
+
+
+
+
+        function del(obj) {
+            $(obj).parent().parent().parent().remove();
+        }
+        function add() {
+            var str = '<div class="form-group">';
+            str += '<label class="col-sm-2 control-label"></label>';
+            str += '<div class="col-sm-10">';
+            str += '<div class="input-group m-b">';
+            str += '<span class="input-group-addon">';
+            str += '<input type="hidden" value="0" name="truelist" />';
+            str += '<input type="checkbox" name="box"  >正确</span > ';
+            str += '<input type="text" class="form-control required" data-name="选项" name="answer">';
+            str += '<span class="input-group-addon" onclick="del(this);">删除</span>';
+            str += '</div>';
+            str += ' </div>';
+            str += ' </div>';
+            $("#answer").append(str);
+        }
+    </script>
 
 </body>
 

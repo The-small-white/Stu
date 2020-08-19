@@ -47,7 +47,8 @@
                                    <option value="0">做为一级栏目</option>
                                      <asp:Repeater ID="repeater" runat="server" DataSource="<%#m_ExhibitionList %>">
                                        <ItemTemplate>
-                                     <option  value="<%#((QuestionType)Container.DataItem).ID %>" <%# SysConfig.Selected(((QuestionType)Container.DataItem).ID+"",news.ParentID+"") %>  <%# ((QuestionType)Container.DataItem).Child?"":"disabled"%>>
+                                     <option  value="<%#((QuestionType)Container.DataItem).ID %>" <%# SysConfig.Selected(((QuestionType)Container.DataItem).ID+"",news.ParentID+"") %> 
+                                         <%# ((QuestionType)Container.DataItem).Child?"":"disabled"%>>
                                          <%# QusetionProvider.GetDepth(((QuestionType)Container.DataItem).Depth)%>
                                          <%#((QuestionType)Container.DataItem).Name %>
                                      </option>

@@ -35,7 +35,9 @@
                                      <option value="0">所有</option>
                                      <asp:Repeater ID="repeater" runat="server" DataSource="<%#m_ExhibitionList %>">
                                        <ItemTemplate>
-                                       <option  value="<%#((QuestionType)Container.DataItem).ID %>" <%# SysConfig.Selected(((QuestionType)Container.DataItem).ID+"",PCID+"") %> <%# ((QuestionType)Container.DataItem).Child?"disabled":""%>>
+                                       <option  value="<%#((QuestionType)Container.DataItem).ID %>" 
+                                           <%# SysConfig.Selected(((QuestionType)Container.DataItem).ID+"",PCID+"") %> 
+                                          <%# ((QuestionType)Container.DataItem).Child?"disabled":""%>>
                                          <%# QusetionProvider.GetDepth(((QuestionType)Container.DataItem).Depth)%>
                                          <%#((QuestionType)Container.DataItem).Name %>
                                      </option>
@@ -77,7 +79,7 @@
                             <tbody class="text-c">
                                  <asp:Repeater ID="Repeater1" runat="server" DataSource="<%# m_tableManageList %>">
                                      <ItemTemplate>
-                                <tr id="tr_<%# ((View_Question)Container.DataItem).ID%>">
+                                    <tr id="tr_<%# ((View_Question)Container.DataItem).ID%>">
                                     <td> 
                                         <input type="checkbox" class="i-checks" name="checkshop" value="<%#((View_Question)Container.DataItem).ID%>">
                                     </td>

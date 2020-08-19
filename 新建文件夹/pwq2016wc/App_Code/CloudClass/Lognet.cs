@@ -26,7 +26,7 @@ public class Lognet
         log.AddTime = DateTime.Now;
         log.Brief = brief;
         log.AddID = AdminMethod.AdminID;
-        log.ExhibitionID = AdminMethod.ExhibitionID;
+        log.ExhibitionID = AdminMethod.ExhibitionID;//编号
         TableOperate<CloudLog>.Insert(log);
     }
     public static void AddMailBox(string log)

@@ -149,14 +149,12 @@ public class ChannelProvider
         {
             conditon.ExhibitionID = AdminMethod.ExhibitionID;
         }
-
         if (rootID > 0)
         {
             conditon.RootID = rootID;
         }
-
         List<Channel> oldTypeData = TableOperate<Channel>.Select(value, conditon, 0, " order by Depth, ParentID, OrderID DESC, ID DESC");
-
+       
         for (int i = 0; i < oldTypeData.Count; i++)
         {
             Channel typeObj = oldTypeData[i];
@@ -167,6 +165,7 @@ public class ChannelProvider
             }
             else
             {
+                //对list集合进行操作
                 int pArentIndex = idList.IndexOf(typeObj.ParentID);//查找上及目录所在位置！
                 channelData.Insert(pArentIndex + 1, typeObj);
                 idList.Insert(pArentIndex + 1, typeObj.ID);    //将数据插入上级目录之后

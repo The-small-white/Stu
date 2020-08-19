@@ -13,13 +13,27 @@ public partial class API_Forward : System.Web.UI.Page
         if (!string.IsNullOrEmpty(this.Request["tag"]))
         {
             string tag = Convert.ToString(Request["tag"]);
-            SendHttp("192.168.10.33", tag); SendHttp("192.168.10.34", tag); SendHttp("192.168.10.35", tag);
+            SendHttp("192.168.10.33", tag); 
+            SendHttp("192.168.10.34", tag);
+            SendHttp("192.168.10.35", tag);
         }
     }
     protected void SendHttp(string ip, string Tag)
     {
         string url = "http://" + ip + ":8020/?act=movie&object=" + Tag + "&states=18&dev=pc";
-        Thread t = new Thread(delegate () { HttpHelp.Get(url); });
+        Thread t = new Thread(delegate () //通过匿名委托创建线程
+        { 
+            HttpHelp.Get(url);
+        }
+        );
+        //通过Lambda表达式创建
+        //Thread tt = new Thread(()=> 
+        // {
+        //     HttpHelp.Get(url); 
+        // }
+        // );
+
+
         t.Start();
     }
 }

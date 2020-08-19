@@ -32,7 +32,8 @@
                                      <option value="0">所有展区</option>
                                      <asp:Repeater ID="repeater" runat="server" DataSource="<%#CloudSQL.GetMyArea() %>">
                                        <ItemTemplate>
-                                     <option  value="<%#((Area)Container.DataItem).ID %>" <%# SysConfig.Selected(((Area)Container.DataItem).ID+"",AreaID+"") %>>
+                                     <option  value="<%#((Area)Container.DataItem).ID %>" 
+                                         <%# SysConfig.Selected(((Area)Container.DataItem).ID+"",AreaID+"") %>>
                                          <%#((Area)Container.DataItem).AreaName %>
                                      </option>
                                       </ItemTemplate>

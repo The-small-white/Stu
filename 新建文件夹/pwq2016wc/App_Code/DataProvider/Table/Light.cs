@@ -1,7 +1,7 @@
-/************************************************************
+﻿/************************************************************
 
   Copyright (c) 2008，
-  Author:               Date: 2019/7/24 14:01:19
+  Author:               Date: 2020/8/12 14:22:14
   Description:    数据表Light对应的业务逻辑层
   Version:         1.1.0.0
 
@@ -80,15 +80,18 @@ namespace Dejun.DataProvider.Table
         private int m_exhibitionID;
         private bool exhibitionID_initialized = false;
         
+        private double m_x;
+        private bool x_initialized = false;
+        
+        private double m_y;
+        private bool y_initialized = false;
+        
 
         public Light()
         {
         }
-        public void NoID()
-        {
-            iD_initialized = false;
-        }
-        public Light(int iD, int addID, DateTime addTime, string title, int typeID, int areaID, string switchIP, int switchPort, int switchIndex, int switchGroup, long orderID, int state, string brief, int isdele, int exhibitionID)
+
+        public Light(int iD, int addID, DateTime addTime, string title, int typeID, int areaID, string switchIP, int switchPort, int switchIndex, int switchGroup, long orderID, int state, string brief, int isdele, int exhibitionID, double x, double y)
         {
             
             this.ID = iD;
@@ -120,6 +123,10 @@ namespace Dejun.DataProvider.Table
             this.Isdele = isdele;
             
             this.ExhibitionID = exhibitionID;
+            
+            this.X = x;
+            
+            this.Y = y;
             
         }
 
@@ -262,6 +269,24 @@ namespace Dejun.DataProvider.Table
                 if (dr["ExhibitionID"] != null && dr["ExhibitionID"] != DBNull.Value)
                 {
                     this.ExhibitionID = Convert.ToInt32(dr["ExhibitionID"]);
+                }
+            }
+
+            
+            if(CheckColumn(dr, "X"))
+            {
+                if (dr["X"] != null && dr["X"] != DBNull.Value)
+                {
+                    this.X = Convert.ToDouble(dr["X"]);
+                }
+            }
+
+            
+            if(CheckColumn(dr, "Y"))
+            {
+                if (dr["Y"] != null && dr["Y"] != DBNull.Value)
+                {
+                    this.Y = Convert.ToDouble(dr["Y"]);
                 }
             }
 
@@ -465,6 +490,32 @@ namespace Dejun.DataProvider.Table
             }
         }
         
+        public double X
+        {
+            get
+            {
+                return this.m_x;
+            }
+            set
+            {
+                x_initialized = true;
+                this.m_x = value;
+            }
+        }
+        
+        public double Y
+        {
+            get
+            {
+                return this.m_y;
+            }
+            set
+            {
+                y_initialized = true;
+                this.m_y = value;
+            }
+        }
+        
 
 
         /// <summary>
@@ -474,7 +525,7 @@ namespace Dejun.DataProvider.Table
         {
             get
             {
-                if (iD_initialized || addID_initialized || addTime_initialized || title_initialized || typeID_initialized || areaID_initialized || switchIP_initialized || switchPort_initialized || switchIndex_initialized || switchGroup_initialized || orderID_initialized || state_initialized || brief_initialized || isdele_initialized || exhibitionID_initialized)
+                if (iD_initialized || addID_initialized || addTime_initialized || title_initialized || typeID_initialized || areaID_initialized || switchIP_initialized || switchPort_initialized || switchIndex_initialized || switchGroup_initialized || orderID_initialized || state_initialized || brief_initialized || isdele_initialized || exhibitionID_initialized || x_initialized || y_initialized)
                 {
                     return false;
                 }
@@ -623,6 +674,22 @@ namespace Dejun.DataProvider.Table
                 parametersList.Add(n_Parameter);
             }
             
+            if (x_initialized)
+            {
+                SqlParameter n_Parameter = new SqlParameter("@" + headStr + "X", SqlDbType.Float);
+                n_Parameter.Value = this.X;
+                n_Parameter.SourceColumn = "X";
+                parametersList.Add(n_Parameter);
+            }
+            
+            if (y_initialized)
+            {
+                SqlParameter n_Parameter = new SqlParameter("@" + headStr + "Y", SqlDbType.Float);
+                n_Parameter.Value = this.Y;
+                n_Parameter.SourceColumn = "Y";
+                parametersList.Add(n_Parameter);
+            }
+            
             parametersList.AddRange(m_addParametersList);  
             SqlParameter[] parameters = (SqlParameter[])parametersList.ToArray(typeof(SqlParameter));
             return parameters;
@@ -722,6 +789,16 @@ namespace Dejun.DataProvider.Table
                 if (this.exhibitionID_initialized)
                 {
                     contentText += ", [ExhibitionID]=@" + headStr + "ExhibitionID ";
+                }
+                
+                if (this.x_initialized)
+                {
+                    contentText += ", [X]=@" + headStr + "X ";
+                }
+                
+                if (this.y_initialized)
+                {
+                    contentText += ", [Y]=@" + headStr + "Y ";
                 }
                 
 
@@ -832,6 +909,16 @@ namespace Dejun.DataProvider.Table
                     conditionStr += " AND [ExhibitionID]=@" + headStr + "ExhibitionID ";
                 }
                 
+                if (this.x_initialized)
+                {
+                    conditionStr += " AND [X]=@" + headStr + "X ";
+                }
+                
+                if (this.y_initialized)
+                {
+                    conditionStr += " AND [Y]=@" + headStr + "Y ";
+                }
+                
 
                 //add by dejun--2011-6-21
                 for (int i = 0; i < m_columnName.Count; i++)
@@ -940,6 +1027,16 @@ namespace Dejun.DataProvider.Table
                     contentText += ", [ExhibitionID] ";
                 }
                 
+                if (this.x_initialized)
+                {
+                    contentText += ", [X] ";
+                }
+                
+                if (this.y_initialized)
+                {
+                    contentText += ", [Y] ";
+                }
+                
 
                 for (int i = 0; i < m_InsertColumn.Count; i++)
 			    {
@@ -1046,6 +1143,16 @@ namespace Dejun.DataProvider.Table
                     contentText += ", @" + headStr + "ExhibitionID ";
                 }
                 
+                if (this.x_initialized)
+                {
+                    contentText += ", @" + headStr + "X ";
+                }
+                
+                if (this.y_initialized)
+                {
+                    contentText += ", @" + headStr + "Y ";
+                }
+                
 
                 for (int i = 0; i < m_InsertValue.Count; i++)
 			    {
@@ -1128,6 +1235,10 @@ namespace Dejun.DataProvider.Table
             this.isdele_initialized = true;
             
             this.exhibitionID_initialized = true;
+            
+            this.x_initialized = true;
+            
+            this.y_initialized = true;
             
         }
     
@@ -1498,6 +1609,46 @@ namespace Dejun.DataProvider.Table
                 else
                 {
                     this.ExhibitionID = Convert.ToInt32(page.Request["exhibitionID"]);
+                }
+            }
+
+            
+            if(page.Request["x"] != null)
+            {
+                if (this.x_initialized)
+                {
+                    if(page.Request["x"] != "")
+                    {
+                        this.X = Convert.ToDouble(page.Request["x"]);
+                    }
+                    else
+                    {
+                        this.x_initialized = false;
+                    }
+                }
+                else
+                {
+                    this.X = Convert.ToDouble(page.Request["x"]);
+                }
+            }
+
+            
+            if(page.Request["y"] != null)
+            {
+                if (this.y_initialized)
+                {
+                    if(page.Request["y"] != "")
+                    {
+                        this.Y = Convert.ToDouble(page.Request["y"]);
+                    }
+                    else
+                    {
+                        this.y_initialized = false;
+                    }
+                }
+                else
+                {
+                    this.Y = Convert.ToDouble(page.Request["y"]);
                 }
             }
 

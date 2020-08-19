@@ -13,6 +13,7 @@ public partial class API_Face_FaceData : System.Web.UI.Page
         {
             string act = Convert.ToString(Request["act"]);
             int uid = Convert.ToInt32(Request["uid"]);
+          
 
             if (act == "get")
             {

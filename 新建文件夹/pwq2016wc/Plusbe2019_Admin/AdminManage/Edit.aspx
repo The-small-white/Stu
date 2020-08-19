@@ -128,7 +128,9 @@
                                    
                                      <asp:Repeater ID="repeater" runat="server" DataSource="<%#m_ExhibitionList %>">
                                        <ItemTemplate>
-                                     <option  value="<%#((Exhibition)Container.DataItem).ID %>" <%# SysConfig.Selected(((Exhibition)Container.DataItem).ID+"",news.ExhibitionID+"") %> <%# ((Exhibition)Container.DataItem).Child?"disabled":""%>>
+                                     <option  value="<%#((Exhibition)Container.DataItem).ID %>"
+                                         <%# SysConfig.Selected(((Exhibition)Container.DataItem).ID+"",news.ExhibitionID+"") %> 
+                                         <%# ((Exhibition)Container.DataItem).Child?"disabled":""%>>
                                          <%# ExhibitionProvider.GetDepth(((Exhibition)Container.DataItem).Depth)%>
                                          <%#((Exhibition)Container.DataItem).Name %>
                                      </option>
@@ -199,6 +201,13 @@
                                         <input type="checkbox" id="inlineCheckbox13" name="manage" value="u3d" <%=SysConfig.SetCheckedMore(news.Manage, "u3d") %>>
                                         <label for="inlineCheckbox13"> U3D </label>
                                     </div>
+
+
+                                  <div class="checkbox checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox14" name="manage" value="niaokan" <%=SysConfig.SetCheckedMore(news.Manage, "niaokan") %>>
+                                        <label for="inlineCheckbox14"> 鸟瞰图 </label>
+                                    </div>
+
                                 </div>
                         
                                

@@ -1,4 +1,5 @@
-﻿using Dejun.DataProvider.Sql2005;
+﻿using CodeBuild.Model;
+using Dejun.DataProvider.Sql2005;
 using Dejun.DataProvider.Table;
 using Newtonsoft.Json;
 using System;
@@ -20,6 +21,7 @@ public partial class ibeaconapi : System.Web.UI.Page
             UserVistCount condition = new UserVistCount();
             condition.ID = 1;
             UserVistCount value = TableOperate<UserVistCount>.GetRowData(condition);
+          
              int nowcount = 0;
             if (value.AddTime.Date == DateTime.Now.Date)
             {
@@ -33,7 +35,8 @@ public partial class ibeaconapi : System.Web.UI.Page
         }
         else if (act == "now")
         {
-           // json = "{\"list\":[";
+            #region MyRegion
+            // json = "{\"list\":[";
             // List<IBeaconGateWay> list = TableOperate<IBeaconGateWay>.Select();
             // View_iBeaconNow condition = new View_iBeaconNow();
             // View_iBeaconNow value = new View_iBeaconNow();
@@ -46,7 +49,8 @@ public partial class ibeaconapi : System.Web.UI.Page
             // }
             // json = json.Trim(',');
             // json += "]}";
-            //  json = StortJson(json);
+            //  json = StortJson(json); 
+            #endregion
             json = "{\"list\":[";
             List<IBeaconGateWay> list = TableOperate<IBeaconGateWay>.Select();
             for (int i = 0; i < list.Count; i++)
@@ -58,7 +62,6 @@ public partial class ibeaconapi : System.Web.UI.Page
         }
         else if (act == "data")
         {
-
              json = "{\"list\":[";
             List<IBeaconGateWay> list = TableOperate<IBeaconGateWay>.Select();
             IBeaconData condition = new IBeaconData();

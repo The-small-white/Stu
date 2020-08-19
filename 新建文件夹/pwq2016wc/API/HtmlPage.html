@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script type="text/javascript">
+        function addRecords() {
+            alert("1");
+            var arr = [];
+            alert("2");
+        arr.push({ "id": "12", "X": "274","Y":"540"});
+        arr.push({ "id": "51", "X": "275", "Y": "541" });
+            alert("3");
+            var data = JSON.stringify(arr);
+            alert("4");
+        $.ajax({
+            type: "post",
+            url: "/Handler.ashx",
+           
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { list: data },
+            success: function (json) {
+                alert("5"),
+                alert(json.count);
+
+            }
+        });
+    }
+    </script>
+   
+
+
+
+</head>
+<body>
+    <div>
+        <input id="btnAdd" type="button" onclick="addRecords()" value="添加记录" />
+    </div>
+
+</body>
+</html>

@@ -42,8 +42,8 @@ public partial class deviceList : System.Web.UI.Page
             if (m_deviceList[i].DeviceType == 4)
             {
                 //投影机
-               Projector projector = GetProjectorInfo(m_deviceList[i].ProjectorType, projectorList);
-               m_deviceList[i].OpenProtocol = projector.OpenProtocol;
+               Projector projector = GetProjectorInfo(m_deviceList[i].ProjectorType, projectorList);//查看设备类型进行比对
+                m_deviceList[i].OpenProtocol = projector.OpenProtocol;
                m_deviceList[i].QueryClose = projector.QueryClose;
                m_deviceList[i].QueryOpen = projector.QueryOpen;
                m_deviceList[i].QueryProtocol = projector.QueryProtocol;
@@ -111,6 +111,7 @@ public partial class deviceList : System.Web.UI.Page
             return false;
         }
     }
+    //查看设备类型进行比对
     private Projector GetProjectorInfo(int projectorType, List<Projector> projectorList)
     {
         for (int i = 0; i < projectorList.Count; i++)

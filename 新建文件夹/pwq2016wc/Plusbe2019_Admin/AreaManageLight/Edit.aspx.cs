@@ -19,8 +19,9 @@ public partial class Plusbe2019_Admin_AreaManageLight_Edit : AdminPage
                 condition.ID = _iD;
                 news = TableOperate<Light>.GetRowData(condition);
                 iD.Value = Convert.ToString(news.ID);
-                State.Value = Convert.ToString(news.State);      
-                
+                State.Value = Convert.ToString(news.State); //     
+               
+
             }
             DataBind();
 

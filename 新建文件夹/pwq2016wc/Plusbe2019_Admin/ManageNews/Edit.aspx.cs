@@ -9,8 +9,8 @@ using System.Web.Script.Serialization;
 public partial class Plusbe2019_Admin_ManageNews_Edit : AdminPage
 {
     protected News news = new News();
-    protected List<Channel> m_ExhibitionList;
-    protected List<ModeChannel> m_ExhibitionList1;
+    protected List<Channel> m_ExhibitionList;//   数据表Channel对应的业务逻辑层
+    protected List<ModeChannel> m_ExhibitionList1; //数据表ModeChannel对应的业务逻辑层
     protected int PCID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {

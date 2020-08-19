@@ -72,8 +72,11 @@
                                      <th>第几路</th>
                                      <th>地址码</th>
                                      <th>所属展区</th>
+                                   <%-- <th>X坐标</th>
+                                     <th>Y坐标</th>--%>
                                      <th>状态</th>
                                      <th>排序</th>
+                                     
                                     <th>编辑</th>
                                 </tr>
                             </thead>
@@ -92,6 +95,13 @@
                                           <td><%# ((View_Light)Container.DataItem).SwitchIndex%></td>
                                           <td><%# ((View_Light)Container.DataItem).SwitchGroup%></td>                                       
                                           <td><%# ((View_Light)Container.DataItem).AreaName%></td>
+                                        <%-- <td><%# ((View_Light)Container.DataItem).X%></td>
+                                         <td><%# ((View_Light)Container.DataItem).Y%></td>--%>
+
+
+
+
+
                                           <td><%# GetStates((((View_Light)Container.DataItem).State))%></td>
                                            <td>
                                         <span   data-id="<%#((View_Light)Container.DataItem).ID%>" class=" up glyphicon glyphicon-arrow-up" aria-hidden="true"></span>

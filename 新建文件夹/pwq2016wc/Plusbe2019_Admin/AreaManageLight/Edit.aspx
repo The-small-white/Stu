@@ -72,6 +72,22 @@
                                 </div>
                             </div>
 
+                           <%--  <div class="form-group">
+                                <label class="col-sm-2 control-label">X坐标：</label>
+
+                                <div class="col-sm-5">
+                                    <input type="number" class="form-control required" name="X" value="<%#news.X %>" />
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Y坐标：</label>
+
+                                <div class="col-sm-5">
+                                    <input type="number" class="form-control required" name="Y" value="<%#news.Y %>" />
+                                </div>
+                            </div>--%>
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">所属展区：</label>
                                 <div class="col-sm-10">
@@ -80,7 +96,8 @@
 
                                         <asp:Repeater ID="repeater" runat="server" DataSource="<%#CloudSQL.GetMyArea() %>">
                                             <ItemTemplate>
-                                                <option value="<%#((Area)Container.DataItem).ID %>" <%# SysConfig.Selected(((Area)Container.DataItem).ID+"",news.AreaID+"") %>>
+                                                <option value="<%#((Area)Container.DataItem).ID %>" 
+                                                    <%# SysConfig.Selected(((Area)Container.DataItem).ID+"",news.AreaID+"") %>>
                                                     <%#((Area)Container.DataItem).AreaName %>
                                                 </option>
                                             </ItemTemplate>

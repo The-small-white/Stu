@@ -55,7 +55,7 @@ namespace Dejun.DataProvider.Table
         {
         }
 
-        public IBeaconData(int iD, int devID, int gateWayID, DateTime lastTime, int stopTime)
+        public IBeaconData(int iD, int devID, int gateWayID, DateTime lastTime, int stopTime,int userid)
         {
             
             this.ID = iD;
@@ -67,6 +67,8 @@ namespace Dejun.DataProvider.Table
             this.LastTime = lastTime;
             
             this.StopTime = stopTime;
+
+            this.UserID = userid;//2020.7.21 自己加的
             
         }
 
@@ -211,6 +213,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
         }
+
+        public int UserID { get; set; }//2020.7.21
 
 
         /// <summary>

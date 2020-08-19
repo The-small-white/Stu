@@ -67,4 +67,16 @@ public partial class Plusbe2019_Admin_TableManage_Edit : AdminPage
         }
         DataBind();
     }
+ 
+
+
+
+
+
+
+
+
+
+
+
 }

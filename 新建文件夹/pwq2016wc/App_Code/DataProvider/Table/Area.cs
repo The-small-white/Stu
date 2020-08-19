@@ -1,7 +1,7 @@
 ﻿/************************************************************
 
   Copyright (c) 2008，
-  Author:               Date: 2019/7/15 9:13:52
+  Author:               Date: 2020/8/12 17:02:44
   Description:    数据表Area对应的业务逻辑层
   Version:         1.1.0.0
 
@@ -34,50 +34,60 @@ namespace Dejun.DataProvider.Table
         //在自动的前提增加条件
         private string m_addConditonStr = "";
 
-        
+
         private int m_iD;
         private bool iD_initialized = false;
-        
+
         private int m_addID;
         private bool addID_initialized = false;
-        
+
         private DateTime m_addTime;
         private bool addTime_initialized = false;
-        
+
         private string m_areaName;
         private bool areaName_initialized = false;
-        
+
         private string m_brief;
         private bool brief_initialized = false;
-        
+
         private long m_orderID;
         private bool orderID_initialized = false;
-        
+
         private int m_exhibitionID;
         private bool exhibitionID_initialized = false;
-        
+
+        private string m_files;
+        private bool files_initialized = false;
+
+        private string m_fileSize;
+        private bool fileSize_initialized = false;
+
 
         public Area()
         {
         }
 
-        public Area(int iD, int addID, DateTime addTime, string areaName, string brief, long orderID, int exhibitionID)
+        public Area(int iD, int addID, DateTime addTime, string areaName, string brief, long orderID, int exhibitionID, string files, string fileSize)
         {
-            
+
             this.ID = iD;
-            
+
             this.AddID = addID;
-            
+
             this.AddTime = addTime;
-            
+
             this.AreaName = areaName;
-            
+
             this.Brief = brief;
-            
+
             this.OrderID = orderID;
-            
+
             this.ExhibitionID = exhibitionID;
-            
+
+            this.Files = files;
+
+            this.FileSize = fileSize;
+
         }
 
 
@@ -87,8 +97,8 @@ namespace Dejun.DataProvider.Table
         /// <param name="dr"></param>
         public void FromIDataReader(IDataReader dr)
         {
-            
-            if(CheckColumn(dr, "ID"))
+
+            if (CheckColumn(dr, "ID"))
             {
                 if (dr["ID"] != null && dr["ID"] != DBNull.Value)
                 {
@@ -96,8 +106,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "AddID"))
+
+            if (CheckColumn(dr, "AddID"))
             {
                 if (dr["AddID"] != null && dr["AddID"] != DBNull.Value)
                 {
@@ -105,8 +115,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "AddTime"))
+
+            if (CheckColumn(dr, "AddTime"))
             {
                 if (dr["AddTime"] != null && dr["AddTime"] != DBNull.Value)
                 {
@@ -114,8 +124,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "AreaName"))
+
+            if (CheckColumn(dr, "AreaName"))
             {
                 if (dr["AreaName"] != null && dr["AreaName"] != DBNull.Value)
                 {
@@ -123,8 +133,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "Brief"))
+
+            if (CheckColumn(dr, "Brief"))
             {
                 if (dr["Brief"] != null && dr["Brief"] != DBNull.Value)
                 {
@@ -132,8 +142,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "OrderID"))
+
+            if (CheckColumn(dr, "OrderID"))
             {
                 if (dr["OrderID"] != null && dr["OrderID"] != DBNull.Value)
                 {
@@ -141,8 +151,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "ExhibitionID"))
+
+            if (CheckColumn(dr, "ExhibitionID"))
             {
                 if (dr["ExhibitionID"] != null && dr["ExhibitionID"] != DBNull.Value)
                 {
@@ -150,11 +160,29 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
+
+            if (CheckColumn(dr, "Files"))
+            {
+                if (dr["Files"] != null && dr["Files"] != DBNull.Value)
+                {
+                    this.Files = Convert.ToString(dr["Files"]);
+                }
+            }
+
+
+            if (CheckColumn(dr, "FileSize"))
+            {
+                if (dr["FileSize"] != null && dr["FileSize"] != DBNull.Value)
+                {
+                    this.FileSize = Convert.ToString(dr["FileSize"]);
+                }
+            }
+
+
 
         }
 
-        
+
         public int ID
         {
             get
@@ -167,7 +195,7 @@ namespace Dejun.DataProvider.Table
                 this.m_iD = value;
             }
         }
-        
+
         public int AddID
         {
             get
@@ -180,7 +208,7 @@ namespace Dejun.DataProvider.Table
                 this.m_addID = value;
             }
         }
-        
+
         public DateTime AddTime
         {
             get
@@ -193,7 +221,7 @@ namespace Dejun.DataProvider.Table
                 this.m_addTime = value;
             }
         }
-        
+
         public string AreaName
         {
             get
@@ -206,7 +234,7 @@ namespace Dejun.DataProvider.Table
                 this.m_areaName = value;
             }
         }
-        
+
         public string Brief
         {
             get
@@ -219,7 +247,7 @@ namespace Dejun.DataProvider.Table
                 this.m_brief = value;
             }
         }
-        
+
         public long OrderID
         {
             get
@@ -232,7 +260,7 @@ namespace Dejun.DataProvider.Table
                 this.m_orderID = value;
             }
         }
-        
+
         public int ExhibitionID
         {
             get
@@ -245,7 +273,33 @@ namespace Dejun.DataProvider.Table
                 this.m_exhibitionID = value;
             }
         }
-        
+
+        public string Files
+        {
+            get
+            {
+                return this.m_files;
+            }
+            set
+            {
+                files_initialized = true;
+                this.m_files = value;
+            }
+        }
+
+        public string FileSize
+        {
+            get
+            {
+                return this.m_fileSize;
+            }
+            set
+            {
+                fileSize_initialized = true;
+                this.m_fileSize = value;
+            }
+        }
+
 
 
         /// <summary>
@@ -255,7 +309,7 @@ namespace Dejun.DataProvider.Table
         {
             get
             {
-                if (iD_initialized || addID_initialized || addTime_initialized || areaName_initialized || brief_initialized || orderID_initialized || exhibitionID_initialized)
+                if (iD_initialized || addID_initialized || addTime_initialized || areaName_initialized || brief_initialized || orderID_initialized || exhibitionID_initialized || files_initialized || fileSize_initialized)
                 {
                     return false;
                 }
@@ -283,7 +337,7 @@ namespace Dejun.DataProvider.Table
         public SqlParameter[] GetSqlParameter(string headStr)
         {
             ArrayList parametersList = new ArrayList();
-            
+
             if (iD_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "ID", SqlDbType.Int);
@@ -291,7 +345,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "ID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (addID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "AddID", SqlDbType.Int);
@@ -299,7 +353,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "AddID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (addTime_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "AddTime", SqlDbType.DateTime);
@@ -307,7 +361,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "AddTime";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (areaName_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "AreaName", SqlDbType.NVarChar);
@@ -315,7 +369,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "AreaName";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (brief_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "Brief", SqlDbType.NVarChar);
@@ -323,7 +377,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "Brief";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (orderID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "OrderID", SqlDbType.BigInt);
@@ -331,7 +385,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "OrderID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (exhibitionID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "ExhibitionID", SqlDbType.Int);
@@ -339,8 +393,24 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "ExhibitionID";
                 parametersList.Add(n_Parameter);
             }
-            
-            parametersList.AddRange(m_addParametersList);  
+
+            if (files_initialized)
+            {
+                SqlParameter n_Parameter = new SqlParameter("@" + headStr + "Files", SqlDbType.NVarChar);
+                n_Parameter.Value = this.Files;
+                n_Parameter.SourceColumn = "Files";
+                parametersList.Add(n_Parameter);
+            }
+
+            if (fileSize_initialized)
+            {
+                SqlParameter n_Parameter = new SqlParameter("@" + headStr + "FileSize", SqlDbType.NVarChar);
+                n_Parameter.Value = this.FileSize;
+                n_Parameter.SourceColumn = "FileSize";
+                parametersList.Add(n_Parameter);
+            }
+
+            parametersList.AddRange(m_addParametersList);
             SqlParameter[] parameters = (SqlParameter[])parametersList.ToArray(typeof(SqlParameter));
             return parameters;
 
@@ -363,44 +433,54 @@ namespace Dejun.DataProvider.Table
         {
             string contentText = "";
 
-            if(this.m_isAutoUpdate)
+            if (this.m_isAutoUpdate)
             {
-                
+
                 if (this.iD_initialized)
                 {
                     contentText += ", [ID]=@" + headStr + "ID ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     contentText += ", [AddID]=@" + headStr + "AddID ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     contentText += ", [AddTime]=@" + headStr + "AddTime ";
                 }
-                
+
                 if (this.areaName_initialized)
                 {
                     contentText += ", [AreaName]=@" + headStr + "AreaName ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     contentText += ", [Brief]=@" + headStr + "Brief ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     contentText += ", [OrderID]=@" + headStr + "OrderID ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     contentText += ", [ExhibitionID]=@" + headStr + "ExhibitionID ";
                 }
-                
+
+                if (this.files_initialized)
+                {
+                    contentText += ", [Files]=@" + headStr + "Files ";
+                }
+
+                if (this.fileSize_initialized)
+                {
+                    contentText += ", [FileSize]=@" + headStr + "FileSize ";
+                }
+
 
                 contentText = contentText.TrimStart(',');
 
@@ -431,59 +511,69 @@ namespace Dejun.DataProvider.Table
         public string ConditionText(string headStr)
         {
             string conditionStr = " WHERE 1=1 ";
-            if(this.m_isAutoConditon)
+            if (this.m_isAutoConditon)
             {
-                
+
                 if (this.iD_initialized)
                 {
                     conditionStr += " AND [ID]=@" + headStr + "ID ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     conditionStr += " AND [AddID]=@" + headStr + "AddID ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     conditionStr += " AND [AddTime]=@" + headStr + "AddTime ";
                 }
-                
+
                 if (this.areaName_initialized)
                 {
                     conditionStr += " AND [AreaName]=@" + headStr + "AreaName ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     conditionStr += " AND [Brief]=@" + headStr + "Brief ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     conditionStr += " AND [OrderID]=@" + headStr + "OrderID ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     conditionStr += " AND [ExhibitionID]=@" + headStr + "ExhibitionID ";
                 }
-                
+
+                if (this.files_initialized)
+                {
+                    conditionStr += " AND [Files]=@" + headStr + "Files ";
+                }
+
+                if (this.fileSize_initialized)
+                {
+                    conditionStr += " AND [FileSize]=@" + headStr + "FileSize ";
+                }
+
 
                 //add by dejun--2011-6-21
                 for (int i = 0; i < m_columnName.Count; i++)
                 {
-                   conditionStr = conditionStr.Replace(" AND [" + m_columnName[i] + "]=@" + headStr + "" + m_columnName[i] + " ", " AND [" + m_columnName[i] + "] " + m_attachList[i] + " @" + headStr + "" + m_columnName[i] + " ");
+                    conditionStr = conditionStr.Replace(" AND [" + m_columnName[i] + "]=@" + headStr + "" + m_columnName[i] + " ", " AND [" + m_columnName[i] + "] " + m_attachList[i] + " @" + headStr + "" + m_columnName[i] + " ");
 
                 }
                 //end -add by dejun--2011-6-21
 
-                if(m_addConditonStr !="")
+                if (m_addConditonStr != "")
                 {
-                    conditionStr= "" + conditionStr + " " + m_addConditonStr;
+                    conditionStr = "" + conditionStr + " " + m_addConditonStr;
                 }
 
-             }
+            }
             else
             {
                 conditionStr = this.m_conditonStr;
@@ -499,54 +589,64 @@ namespace Dejun.DataProvider.Table
         public string ContentText()
         {
             string contentText = "";
-            if(this.m_isAutoContent)
+            if (this.m_isAutoContent)
             {
-                
+
                 if (this.iD_initialized)
                 {
                     contentText += ", [ID] ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     contentText += ", [AddID] ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     contentText += ", [AddTime] ";
                 }
-                
+
                 if (this.areaName_initialized)
                 {
                     contentText += ", [AreaName] ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     contentText += ", [Brief] ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     contentText += ", [OrderID] ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     contentText += ", [ExhibitionID] ";
                 }
-                
+
+                if (this.files_initialized)
+                {
+                    contentText += ", [Files] ";
+                }
+
+                if (this.fileSize_initialized)
+                {
+                    contentText += ", [FileSize] ";
+                }
+
 
                 for (int i = 0; i < m_InsertColumn.Count; i++)
-			    {
-    			     contentText += ", [" + m_InsertColumn[i] + "] ";
-			    }
+                {
+                    contentText += ", [" + m_InsertColumn[i] + "] ";
+                }
 
                 contentText = contentText.TrimStart(',');
 
-                if(contentText == "")
-                {     
+                if (contentText == "")
+                {
                     contentText = " * ";
                 }
             }
@@ -565,49 +665,59 @@ namespace Dejun.DataProvider.Table
         public string InsertText(string headStr)
         {
             string contentText = "";
-            if(this.m_isAutoInsert)
+            if (this.m_isAutoInsert)
             {
-                
+
                 if (this.iD_initialized)
                 {
                     contentText += ", @" + headStr + "ID ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     contentText += ", @" + headStr + "AddID ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     contentText += ", @" + headStr + "AddTime ";
                 }
-                
+
                 if (this.areaName_initialized)
                 {
                     contentText += ", @" + headStr + "AreaName ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     contentText += ", @" + headStr + "Brief ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     contentText += ", @" + headStr + "OrderID ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     contentText += ", @" + headStr + "ExhibitionID ";
                 }
-                
+
+                if (this.files_initialized)
+                {
+                    contentText += ", @" + headStr + "Files ";
+                }
+
+                if (this.fileSize_initialized)
+                {
+                    contentText += ", @" + headStr + "FileSize ";
+                }
+
 
                 for (int i = 0; i < m_InsertValue.Count; i++)
-			    {
-    			     contentText += ", " + m_InsertValue[i] + " ";
-			    }
+                {
+                    contentText += ", " + m_InsertValue[i] + " ";
+                }
                 contentText = contentText.TrimStart(',');
             }
             else
@@ -655,23 +765,27 @@ namespace Dejun.DataProvider.Table
         /// <returns></returns>
         public void AllInitialized()
         {
-            
+
             this.iD_initialized = true;
-            
+
             this.addID_initialized = true;
-            
+
             this.addTime_initialized = true;
-            
+
             this.areaName_initialized = true;
-            
+
             this.brief_initialized = true;
-            
+
             this.orderID_initialized = true;
-            
+
             this.exhibitionID_initialized = true;
-            
+
+            this.files_initialized = true;
+
+            this.fileSize_initialized = true;
+
         }
-    
+
         private bool CheckColumn(IDataReader dr, string columnName)
         {
             for (int i = 0; i < dr.FieldCount; i++)
@@ -742,12 +856,12 @@ namespace Dejun.DataProvider.Table
         /// <param name="page">页面对象 </param>
         public void AutoForm(System.Web.UI.Page page)
         {
-            
-            if(page.Request["iD"] != null)
+
+            if (page.Request["iD"] != null)
             {
                 if (this.iD_initialized)
                 {
-                    if(page.Request["iD"] != "")
+                    if (page.Request["iD"] != "")
                     {
                         this.ID = Convert.ToInt32(page.Request["iD"]);
                     }
@@ -762,12 +876,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["addID"] != null)
+
+            if (page.Request["addID"] != null)
             {
                 if (this.addID_initialized)
                 {
-                    if(page.Request["addID"] != "")
+                    if (page.Request["addID"] != "")
                     {
                         this.AddID = Convert.ToInt32(page.Request["addID"]);
                     }
@@ -782,12 +896,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["addTime"] != null)
+
+            if (page.Request["addTime"] != null)
             {
                 if (this.addTime_initialized)
                 {
-                    if(page.Request["addTime"] != "")
+                    if (page.Request["addTime"] != "")
                     {
                         this.AddTime = Convert.ToDateTime(page.Request["addTime"]);
                     }
@@ -802,12 +916,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["areaName"] != null)
+
+            if (page.Request["areaName"] != null)
             {
                 if (this.areaName_initialized)
                 {
-                    if(page.Request["areaName"] != "")
+                    if (page.Request["areaName"] != "")
                     {
                         this.AreaName = Convert.ToString(page.Request["areaName"]);
                     }
@@ -822,12 +936,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["brief"] != null)
+
+            if (page.Request["brief"] != null)
             {
                 if (this.brief_initialized)
                 {
-                    if(page.Request["brief"] != "")
+                    if (page.Request["brief"] != "")
                     {
                         this.Brief = Convert.ToString(page.Request["brief"]);
                     }
@@ -842,12 +956,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["orderID"] != null)
+
+            if (page.Request["orderID"] != null)
             {
                 if (this.orderID_initialized)
                 {
-                    if(page.Request["orderID"] != "")
+                    if (page.Request["orderID"] != "")
                     {
                         this.OrderID = Convert.ToInt64(page.Request["orderID"]);
                     }
@@ -862,12 +976,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["exhibitionID"] != null)
+
+            if (page.Request["exhibitionID"] != null)
             {
                 if (this.exhibitionID_initialized)
                 {
-                    if(page.Request["exhibitionID"] != "")
+                    if (page.Request["exhibitionID"] != "")
                     {
                         this.ExhibitionID = Convert.ToInt32(page.Request["exhibitionID"]);
                     }
@@ -882,7 +996,47 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
+
+            if (page.Request["files"] != null)
+            {
+                if (this.files_initialized)
+                {
+                    if (page.Request["files"] != "")
+                    {
+                        this.Files = Convert.ToString(page.Request["files"]);
+                    }
+                    else
+                    {
+                        this.files_initialized = false;
+                    }
+                }
+                else
+                {
+                    this.Files = Convert.ToString(page.Request["files"]);
+                }
+            }
+
+
+            if (page.Request["fileSize"] != null)
+            {
+                if (this.fileSize_initialized)
+                {
+                    if (page.Request["fileSize"] != "")
+                    {
+                        this.FileSize = Convert.ToString(page.Request["fileSize"]);
+                    }
+                    else
+                    {
+                        this.fileSize_initialized = false;
+                    }
+                }
+                else
+                {
+                    this.FileSize = Convert.ToString(page.Request["fileSize"]);
+                }
+            }
+
+
         }
 
         //add by dejun--2011-6-21

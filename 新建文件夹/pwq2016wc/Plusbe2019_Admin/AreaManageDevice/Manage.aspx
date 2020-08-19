@@ -69,6 +69,8 @@
                                         <th>名称</th>
                                         <th>设备ip地址</th>
                                         <th>所属展厅</th>
+                                      <%--  <th>X坐标</th>
+                                        <th>Y坐标</th>--%>
                                         <th>添加时间</th>
                                         <th>状态</th>
                                         <th>排序</th>
@@ -87,6 +89,8 @@
                                                 <td><%# ((View_Device)Container.DataItem).Name%></a></td>
                                                 <td><%# ((View_Device)Container.DataItem).DeviceType==1?((View_Device)Container.DataItem).SwitchIP:((View_Device)Container.DataItem).Ip%>,<%# ((View_Device)Container.DataItem).DeviceType == 1 ? ((View_Device)Container.DataItem).SwitchPort : ((View_Device)Container.DataItem).Port%></td>
                                                 <td><%# ((View_Device)Container.DataItem).AreaName%></td>
+                                              <%--  <td><%# ((View_Device)Container.DataItem).X%></td>
+                                                <td><%# ((View_Device)Container.DataItem).Y%></td>--%>
                                                 <td><%# ((View_Device)Container.DataItem).AddTime%></td>
                                                 <td><%# GetStates(((View_Device)Container.DataItem).State)%></td>
                                                 <td>

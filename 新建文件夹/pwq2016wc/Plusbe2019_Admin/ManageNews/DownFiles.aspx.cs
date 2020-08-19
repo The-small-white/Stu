@@ -24,8 +24,8 @@ public partial class Plusbe2019_Admin_CloudNews_DownFiles : AdminPage
             if (news.ID > 0 && news.FileType != 2)
             {
                 Result result = new Result();
-                string file = news.Files;
-                if (news.FileType == 4)//图片下载
+                string file = news.Files;//文件路径
+                if (news.FileType == 4)//4是图片下载1是视频
                 {
                     file = news.Files1;
                 }

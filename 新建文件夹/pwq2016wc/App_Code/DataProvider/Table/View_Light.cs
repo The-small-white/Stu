@@ -1,7 +1,7 @@
 /************************************************************
 
   Copyright (c) 2008，
-  Author:               Date: 2019/7/24 13:39:11
+  Author:               Date: 2020/8/12 15:48:40
   Description:    数据表View_Light对应的业务逻辑层
   Version:         1.1.0.0
 
@@ -34,95 +34,105 @@ namespace Dejun.DataProvider.Table
         //在自动的前提增加条件
         private string m_addConditonStr = "";
 
-        
+
         private string m_areaName;
         private bool areaName_initialized = false;
-        
+
         private int m_iD;
         private bool iD_initialized = false;
-        
+
         private int m_addID;
         private bool addID_initialized = false;
-        
+
         private DateTime m_addTime;
         private bool addTime_initialized = false;
-        
+
         private string m_title;
         private bool title_initialized = false;
-        
+
         private int m_typeID;
         private bool typeID_initialized = false;
-        
+
         private int m_areaID;
         private bool areaID_initialized = false;
-        
+
         private string m_switchIP;
         private bool switchIP_initialized = false;
-        
+
         private int m_switchPort;
         private bool switchPort_initialized = false;
-        
+
         private int m_switchIndex;
         private bool switchIndex_initialized = false;
-        
+
         private int m_switchGroup;
         private bool switchGroup_initialized = false;
-        
+
         private long m_orderID;
         private bool orderID_initialized = false;
-        
+
         private int m_state;
         private bool state_initialized = false;
-        
+
         private string m_brief;
         private bool brief_initialized = false;
-        
+
         private int m_isdele;
         private bool isdele_initialized = false;
-        
+
         private int m_exhibitionID;
         private bool exhibitionID_initialized = false;
-        
+
+        private double m_y;
+        private bool y_initialized = false;
+
+        private double m_x;
+        private bool x_initialized = false;
+
 
         public View_Light()
         {
         }
 
-        public View_Light(string areaName, int iD, int addID, DateTime addTime, string title, int typeID, int areaID, string switchIP, int switchPort, int switchIndex, int switchGroup, long orderID, int state, string brief, int isdele, int exhibitionID)
+        public View_Light(string areaName, int iD, int addID, DateTime addTime, string title, int typeID, int areaID, string switchIP, int switchPort, int switchIndex, int switchGroup, long orderID, int state, string brief, int isdele, int exhibitionID, double y, double x)
         {
-            
+
             this.AreaName = areaName;
-            
+
             this.ID = iD;
-            
+
             this.AddID = addID;
-            
+
             this.AddTime = addTime;
-            
+
             this.Title = title;
-            
+
             this.TypeID = typeID;
-            
+
             this.AreaID = areaID;
-            
+
             this.SwitchIP = switchIP;
-            
+
             this.SwitchPort = switchPort;
-            
+
             this.SwitchIndex = switchIndex;
-            
+
             this.SwitchGroup = switchGroup;
-            
+
             this.OrderID = orderID;
-            
+
             this.State = state;
-            
+
             this.Brief = brief;
-            
+
             this.Isdele = isdele;
-            
+
             this.ExhibitionID = exhibitionID;
-            
+
+            this.Y = y;
+
+            this.X = x;
+
         }
 
 
@@ -132,8 +142,8 @@ namespace Dejun.DataProvider.Table
         /// <param name="dr"></param>
         public void FromIDataReader(IDataReader dr)
         {
-            
-            if(CheckColumn(dr, "AreaName"))
+
+            if (CheckColumn(dr, "AreaName"))
             {
                 if (dr["AreaName"] != null && dr["AreaName"] != DBNull.Value)
                 {
@@ -141,8 +151,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "ID"))
+
+            if (CheckColumn(dr, "ID"))
             {
                 if (dr["ID"] != null && dr["ID"] != DBNull.Value)
                 {
@@ -150,8 +160,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "AddID"))
+
+            if (CheckColumn(dr, "AddID"))
             {
                 if (dr["AddID"] != null && dr["AddID"] != DBNull.Value)
                 {
@@ -159,8 +169,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "AddTime"))
+
+            if (CheckColumn(dr, "AddTime"))
             {
                 if (dr["AddTime"] != null && dr["AddTime"] != DBNull.Value)
                 {
@@ -168,8 +178,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "Title"))
+
+            if (CheckColumn(dr, "Title"))
             {
                 if (dr["Title"] != null && dr["Title"] != DBNull.Value)
                 {
@@ -177,8 +187,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "TypeID"))
+
+            if (CheckColumn(dr, "TypeID"))
             {
                 if (dr["TypeID"] != null && dr["TypeID"] != DBNull.Value)
                 {
@@ -186,8 +196,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "AreaID"))
+
+            if (CheckColumn(dr, "AreaID"))
             {
                 if (dr["AreaID"] != null && dr["AreaID"] != DBNull.Value)
                 {
@@ -195,8 +205,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "SwitchIP"))
+
+            if (CheckColumn(dr, "SwitchIP"))
             {
                 if (dr["SwitchIP"] != null && dr["SwitchIP"] != DBNull.Value)
                 {
@@ -204,8 +214,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "SwitchPort"))
+
+            if (CheckColumn(dr, "SwitchPort"))
             {
                 if (dr["SwitchPort"] != null && dr["SwitchPort"] != DBNull.Value)
                 {
@@ -213,8 +223,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "SwitchIndex"))
+
+            if (CheckColumn(dr, "SwitchIndex"))
             {
                 if (dr["SwitchIndex"] != null && dr["SwitchIndex"] != DBNull.Value)
                 {
@@ -222,8 +232,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "SwitchGroup"))
+
+            if (CheckColumn(dr, "SwitchGroup"))
             {
                 if (dr["SwitchGroup"] != null && dr["SwitchGroup"] != DBNull.Value)
                 {
@@ -231,8 +241,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "OrderID"))
+
+            if (CheckColumn(dr, "OrderID"))
             {
                 if (dr["OrderID"] != null && dr["OrderID"] != DBNull.Value)
                 {
@@ -240,8 +250,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "State"))
+
+            if (CheckColumn(dr, "State"))
             {
                 if (dr["State"] != null && dr["State"] != DBNull.Value)
                 {
@@ -249,8 +259,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "Brief"))
+
+            if (CheckColumn(dr, "Brief"))
             {
                 if (dr["Brief"] != null && dr["Brief"] != DBNull.Value)
                 {
@@ -258,8 +268,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "Isdele"))
+
+            if (CheckColumn(dr, "Isdele"))
             {
                 if (dr["Isdele"] != null && dr["Isdele"] != DBNull.Value)
                 {
@@ -267,8 +277,8 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(CheckColumn(dr, "ExhibitionID"))
+
+            if (CheckColumn(dr, "ExhibitionID"))
             {
                 if (dr["ExhibitionID"] != null && dr["ExhibitionID"] != DBNull.Value)
                 {
@@ -276,11 +286,29 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
+
+            if (CheckColumn(dr, "Y"))
+            {
+                if (dr["Y"] != null && dr["Y"] != DBNull.Value)
+                {
+                    this.Y = Convert.ToDouble(dr["Y"]);
+                }
+            }
+
+
+            if (CheckColumn(dr, "X"))
+            {
+                if (dr["X"] != null && dr["X"] != DBNull.Value)
+                {
+                    this.X = Convert.ToDouble(dr["X"]);
+                }
+            }
+
+
 
         }
 
-        
+
         public string AreaName
         {
             get
@@ -293,7 +321,7 @@ namespace Dejun.DataProvider.Table
                 this.m_areaName = value;
             }
         }
-        
+
         public int ID
         {
             get
@@ -306,7 +334,7 @@ namespace Dejun.DataProvider.Table
                 this.m_iD = value;
             }
         }
-        
+
         public int AddID
         {
             get
@@ -319,7 +347,7 @@ namespace Dejun.DataProvider.Table
                 this.m_addID = value;
             }
         }
-        
+
         public DateTime AddTime
         {
             get
@@ -332,7 +360,7 @@ namespace Dejun.DataProvider.Table
                 this.m_addTime = value;
             }
         }
-        
+
         public string Title
         {
             get
@@ -345,7 +373,7 @@ namespace Dejun.DataProvider.Table
                 this.m_title = value;
             }
         }
-        
+
         public int TypeID
         {
             get
@@ -358,7 +386,7 @@ namespace Dejun.DataProvider.Table
                 this.m_typeID = value;
             }
         }
-        
+
         public int AreaID
         {
             get
@@ -371,7 +399,7 @@ namespace Dejun.DataProvider.Table
                 this.m_areaID = value;
             }
         }
-        
+
         public string SwitchIP
         {
             get
@@ -384,7 +412,7 @@ namespace Dejun.DataProvider.Table
                 this.m_switchIP = value;
             }
         }
-        
+
         public int SwitchPort
         {
             get
@@ -397,7 +425,7 @@ namespace Dejun.DataProvider.Table
                 this.m_switchPort = value;
             }
         }
-        
+
         public int SwitchIndex
         {
             get
@@ -410,7 +438,7 @@ namespace Dejun.DataProvider.Table
                 this.m_switchIndex = value;
             }
         }
-        
+
         public int SwitchGroup
         {
             get
@@ -423,7 +451,7 @@ namespace Dejun.DataProvider.Table
                 this.m_switchGroup = value;
             }
         }
-        
+
         public long OrderID
         {
             get
@@ -436,7 +464,7 @@ namespace Dejun.DataProvider.Table
                 this.m_orderID = value;
             }
         }
-        
+
         public int State
         {
             get
@@ -449,7 +477,7 @@ namespace Dejun.DataProvider.Table
                 this.m_state = value;
             }
         }
-        
+
         public string Brief
         {
             get
@@ -462,7 +490,7 @@ namespace Dejun.DataProvider.Table
                 this.m_brief = value;
             }
         }
-        
+
         public int Isdele
         {
             get
@@ -475,7 +503,7 @@ namespace Dejun.DataProvider.Table
                 this.m_isdele = value;
             }
         }
-        
+
         public int ExhibitionID
         {
             get
@@ -488,7 +516,33 @@ namespace Dejun.DataProvider.Table
                 this.m_exhibitionID = value;
             }
         }
-        
+
+        public double Y
+        {
+            get
+            {
+                return this.m_y;
+            }
+            set
+            {
+                y_initialized = true;
+                this.m_y = value;
+            }
+        }
+
+        public double X
+        {
+            get
+            {
+                return this.m_x;
+            }
+            set
+            {
+                x_initialized = true;
+                this.m_x = value;
+            }
+        }
+
 
 
         /// <summary>
@@ -498,7 +552,7 @@ namespace Dejun.DataProvider.Table
         {
             get
             {
-                if (areaName_initialized || iD_initialized || addID_initialized || addTime_initialized || title_initialized || typeID_initialized || areaID_initialized || switchIP_initialized || switchPort_initialized || switchIndex_initialized || switchGroup_initialized || orderID_initialized || state_initialized || brief_initialized || isdele_initialized || exhibitionID_initialized)
+                if (areaName_initialized || iD_initialized || addID_initialized || addTime_initialized || title_initialized || typeID_initialized || areaID_initialized || switchIP_initialized || switchPort_initialized || switchIndex_initialized || switchGroup_initialized || orderID_initialized || state_initialized || brief_initialized || isdele_initialized || exhibitionID_initialized || y_initialized || x_initialized)
                 {
                     return false;
                 }
@@ -526,7 +580,7 @@ namespace Dejun.DataProvider.Table
         public SqlParameter[] GetSqlParameter(string headStr)
         {
             ArrayList parametersList = new ArrayList();
-            
+
             if (areaName_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "AreaName", SqlDbType.NVarChar);
@@ -534,7 +588,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "AreaName";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (iD_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "ID", SqlDbType.Int);
@@ -542,7 +596,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "ID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (addID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "AddID", SqlDbType.Int);
@@ -550,7 +604,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "AddID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (addTime_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "AddTime", SqlDbType.DateTime);
@@ -558,7 +612,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "AddTime";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (title_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "Title", SqlDbType.NVarChar);
@@ -566,7 +620,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "Title";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (typeID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "TypeID", SqlDbType.Int);
@@ -574,7 +628,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "TypeID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (areaID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "AreaID", SqlDbType.Int);
@@ -582,7 +636,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "AreaID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (switchIP_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "SwitchIP", SqlDbType.NVarChar);
@@ -590,7 +644,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "SwitchIP";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (switchPort_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "SwitchPort", SqlDbType.Int);
@@ -598,7 +652,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "SwitchPort";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (switchIndex_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "SwitchIndex", SqlDbType.Int);
@@ -606,7 +660,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "SwitchIndex";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (switchGroup_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "SwitchGroup", SqlDbType.Int);
@@ -614,7 +668,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "SwitchGroup";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (orderID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "OrderID", SqlDbType.BigInt);
@@ -622,7 +676,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "OrderID";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (state_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "State", SqlDbType.Int);
@@ -630,7 +684,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "State";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (brief_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "Brief", SqlDbType.NVarChar);
@@ -638,7 +692,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "Brief";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (isdele_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "Isdele", SqlDbType.Int);
@@ -646,7 +700,7 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "Isdele";
                 parametersList.Add(n_Parameter);
             }
-            
+
             if (exhibitionID_initialized)
             {
                 SqlParameter n_Parameter = new SqlParameter("@" + headStr + "ExhibitionID", SqlDbType.Int);
@@ -654,8 +708,24 @@ namespace Dejun.DataProvider.Table
                 n_Parameter.SourceColumn = "ExhibitionID";
                 parametersList.Add(n_Parameter);
             }
-            
-            parametersList.AddRange(m_addParametersList);  
+
+            if (y_initialized)
+            {
+                SqlParameter n_Parameter = new SqlParameter("@" + headStr + "Y", SqlDbType.Float);
+                n_Parameter.Value = this.Y;
+                n_Parameter.SourceColumn = "Y";
+                parametersList.Add(n_Parameter);
+            }
+
+            if (x_initialized)
+            {
+                SqlParameter n_Parameter = new SqlParameter("@" + headStr + "X", SqlDbType.Float);
+                n_Parameter.Value = this.X;
+                n_Parameter.SourceColumn = "X";
+                parametersList.Add(n_Parameter);
+            }
+
+            parametersList.AddRange(m_addParametersList);
             SqlParameter[] parameters = (SqlParameter[])parametersList.ToArray(typeof(SqlParameter));
             return parameters;
 
@@ -678,89 +748,99 @@ namespace Dejun.DataProvider.Table
         {
             string contentText = "";
 
-            if(this.m_isAutoUpdate)
+            if (this.m_isAutoUpdate)
             {
-                
+
                 if (this.areaName_initialized)
                 {
                     contentText += ", [AreaName]=@" + headStr + "AreaName ";
                 }
-                
+
                 if (this.iD_initialized)
                 {
                     contentText += ", [ID]=@" + headStr + "ID ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     contentText += ", [AddID]=@" + headStr + "AddID ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     contentText += ", [AddTime]=@" + headStr + "AddTime ";
                 }
-                
+
                 if (this.title_initialized)
                 {
                     contentText += ", [Title]=@" + headStr + "Title ";
                 }
-                
+
                 if (this.typeID_initialized)
                 {
                     contentText += ", [TypeID]=@" + headStr + "TypeID ";
                 }
-                
+
                 if (this.areaID_initialized)
                 {
                     contentText += ", [AreaID]=@" + headStr + "AreaID ";
                 }
-                
+
                 if (this.switchIP_initialized)
                 {
                     contentText += ", [SwitchIP]=@" + headStr + "SwitchIP ";
                 }
-                
+
                 if (this.switchPort_initialized)
                 {
                     contentText += ", [SwitchPort]=@" + headStr + "SwitchPort ";
                 }
-                
+
                 if (this.switchIndex_initialized)
                 {
                     contentText += ", [SwitchIndex]=@" + headStr + "SwitchIndex ";
                 }
-                
+
                 if (this.switchGroup_initialized)
                 {
                     contentText += ", [SwitchGroup]=@" + headStr + "SwitchGroup ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     contentText += ", [OrderID]=@" + headStr + "OrderID ";
                 }
-                
+
                 if (this.state_initialized)
                 {
                     contentText += ", [State]=@" + headStr + "State ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     contentText += ", [Brief]=@" + headStr + "Brief ";
                 }
-                
+
                 if (this.isdele_initialized)
                 {
                     contentText += ", [Isdele]=@" + headStr + "Isdele ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     contentText += ", [ExhibitionID]=@" + headStr + "ExhibitionID ";
                 }
-                
+
+                if (this.y_initialized)
+                {
+                    contentText += ", [Y]=@" + headStr + "Y ";
+                }
+
+                if (this.x_initialized)
+                {
+                    contentText += ", [X]=@" + headStr + "X ";
+                }
+
 
                 contentText = contentText.TrimStart(',');
 
@@ -791,104 +871,114 @@ namespace Dejun.DataProvider.Table
         public string ConditionText(string headStr)
         {
             string conditionStr = " WHERE 1=1 ";
-            if(this.m_isAutoConditon)
+            if (this.m_isAutoConditon)
             {
-                
+
                 if (this.areaName_initialized)
                 {
                     conditionStr += " AND [AreaName]=@" + headStr + "AreaName ";
                 }
-                
+
                 if (this.iD_initialized)
                 {
                     conditionStr += " AND [ID]=@" + headStr + "ID ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     conditionStr += " AND [AddID]=@" + headStr + "AddID ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     conditionStr += " AND [AddTime]=@" + headStr + "AddTime ";
                 }
-                
+
                 if (this.title_initialized)
                 {
                     conditionStr += " AND [Title]=@" + headStr + "Title ";
                 }
-                
+
                 if (this.typeID_initialized)
                 {
                     conditionStr += " AND [TypeID]=@" + headStr + "TypeID ";
                 }
-                
+
                 if (this.areaID_initialized)
                 {
                     conditionStr += " AND [AreaID]=@" + headStr + "AreaID ";
                 }
-                
+
                 if (this.switchIP_initialized)
                 {
                     conditionStr += " AND [SwitchIP]=@" + headStr + "SwitchIP ";
                 }
-                
+
                 if (this.switchPort_initialized)
                 {
                     conditionStr += " AND [SwitchPort]=@" + headStr + "SwitchPort ";
                 }
-                
+
                 if (this.switchIndex_initialized)
                 {
                     conditionStr += " AND [SwitchIndex]=@" + headStr + "SwitchIndex ";
                 }
-                
+
                 if (this.switchGroup_initialized)
                 {
                     conditionStr += " AND [SwitchGroup]=@" + headStr + "SwitchGroup ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     conditionStr += " AND [OrderID]=@" + headStr + "OrderID ";
                 }
-                
+
                 if (this.state_initialized)
                 {
                     conditionStr += " AND [State]=@" + headStr + "State ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     conditionStr += " AND [Brief]=@" + headStr + "Brief ";
                 }
-                
+
                 if (this.isdele_initialized)
                 {
                     conditionStr += " AND [Isdele]=@" + headStr + "Isdele ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     conditionStr += " AND [ExhibitionID]=@" + headStr + "ExhibitionID ";
                 }
-                
+
+                if (this.y_initialized)
+                {
+                    conditionStr += " AND [Y]=@" + headStr + "Y ";
+                }
+
+                if (this.x_initialized)
+                {
+                    conditionStr += " AND [X]=@" + headStr + "X ";
+                }
+
 
                 //add by dejun--2011-6-21
                 for (int i = 0; i < m_columnName.Count; i++)
                 {
-                   conditionStr = conditionStr.Replace(" AND [" + m_columnName[i] + "]=@" + headStr + "" + m_columnName[i] + " ", " AND [" + m_columnName[i] + "] " + m_attachList[i] + " @" + headStr + "" + m_columnName[i] + " ");
+                    conditionStr = conditionStr.Replace(" AND [" + m_columnName[i] + "]=@" + headStr + "" + m_columnName[i] + " ", " AND [" + m_columnName[i] + "] " + m_attachList[i] + " @" + headStr + "" + m_columnName[i] + " ");
 
                 }
                 //end -add by dejun--2011-6-21
 
-                if(m_addConditonStr !="")
+                if (m_addConditonStr != "")
                 {
-                    conditionStr= "" + conditionStr + " " + m_addConditonStr;
+                    conditionStr = "" + conditionStr + " " + m_addConditonStr;
                 }
 
-             }
+            }
             else
             {
                 conditionStr = this.m_conditonStr;
@@ -904,99 +994,109 @@ namespace Dejun.DataProvider.Table
         public string ContentText()
         {
             string contentText = "";
-            if(this.m_isAutoContent)
+            if (this.m_isAutoContent)
             {
-                
+
                 if (this.areaName_initialized)
                 {
                     contentText += ", [AreaName] ";
                 }
-                
+
                 if (this.iD_initialized)
                 {
                     contentText += ", [ID] ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     contentText += ", [AddID] ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     contentText += ", [AddTime] ";
                 }
-                
+
                 if (this.title_initialized)
                 {
                     contentText += ", [Title] ";
                 }
-                
+
                 if (this.typeID_initialized)
                 {
                     contentText += ", [TypeID] ";
                 }
-                
+
                 if (this.areaID_initialized)
                 {
                     contentText += ", [AreaID] ";
                 }
-                
+
                 if (this.switchIP_initialized)
                 {
                     contentText += ", [SwitchIP] ";
                 }
-                
+
                 if (this.switchPort_initialized)
                 {
                     contentText += ", [SwitchPort] ";
                 }
-                
+
                 if (this.switchIndex_initialized)
                 {
                     contentText += ", [SwitchIndex] ";
                 }
-                
+
                 if (this.switchGroup_initialized)
                 {
                     contentText += ", [SwitchGroup] ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     contentText += ", [OrderID] ";
                 }
-                
+
                 if (this.state_initialized)
                 {
                     contentText += ", [State] ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     contentText += ", [Brief] ";
                 }
-                
+
                 if (this.isdele_initialized)
                 {
                     contentText += ", [Isdele] ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     contentText += ", [ExhibitionID] ";
                 }
-                
+
+                if (this.y_initialized)
+                {
+                    contentText += ", [Y] ";
+                }
+
+                if (this.x_initialized)
+                {
+                    contentText += ", [X] ";
+                }
+
 
                 for (int i = 0; i < m_InsertColumn.Count; i++)
-			    {
-    			     contentText += ", [" + m_InsertColumn[i] + "] ";
-			    }
+                {
+                    contentText += ", [" + m_InsertColumn[i] + "] ";
+                }
 
                 contentText = contentText.TrimStart(',');
 
-                if(contentText == "")
-                {     
+                if (contentText == "")
+                {
                     contentText = " * ";
                 }
             }
@@ -1015,94 +1115,104 @@ namespace Dejun.DataProvider.Table
         public string InsertText(string headStr)
         {
             string contentText = "";
-            if(this.m_isAutoInsert)
+            if (this.m_isAutoInsert)
             {
-                
+
                 if (this.areaName_initialized)
                 {
                     contentText += ", @" + headStr + "AreaName ";
                 }
-                
+
                 if (this.iD_initialized)
                 {
                     contentText += ", @" + headStr + "ID ";
                 }
-                
+
                 if (this.addID_initialized)
                 {
                     contentText += ", @" + headStr + "AddID ";
                 }
-                
+
                 if (this.addTime_initialized)
                 {
                     contentText += ", @" + headStr + "AddTime ";
                 }
-                
+
                 if (this.title_initialized)
                 {
                     contentText += ", @" + headStr + "Title ";
                 }
-                
+
                 if (this.typeID_initialized)
                 {
                     contentText += ", @" + headStr + "TypeID ";
                 }
-                
+
                 if (this.areaID_initialized)
                 {
                     contentText += ", @" + headStr + "AreaID ";
                 }
-                
+
                 if (this.switchIP_initialized)
                 {
                     contentText += ", @" + headStr + "SwitchIP ";
                 }
-                
+
                 if (this.switchPort_initialized)
                 {
                     contentText += ", @" + headStr + "SwitchPort ";
                 }
-                
+
                 if (this.switchIndex_initialized)
                 {
                     contentText += ", @" + headStr + "SwitchIndex ";
                 }
-                
+
                 if (this.switchGroup_initialized)
                 {
                     contentText += ", @" + headStr + "SwitchGroup ";
                 }
-                
+
                 if (this.orderID_initialized)
                 {
                     contentText += ", @" + headStr + "OrderID ";
                 }
-                
+
                 if (this.state_initialized)
                 {
                     contentText += ", @" + headStr + "State ";
                 }
-                
+
                 if (this.brief_initialized)
                 {
                     contentText += ", @" + headStr + "Brief ";
                 }
-                
+
                 if (this.isdele_initialized)
                 {
                     contentText += ", @" + headStr + "Isdele ";
                 }
-                
+
                 if (this.exhibitionID_initialized)
                 {
                     contentText += ", @" + headStr + "ExhibitionID ";
                 }
-                
+
+                if (this.y_initialized)
+                {
+                    contentText += ", @" + headStr + "Y ";
+                }
+
+                if (this.x_initialized)
+                {
+                    contentText += ", @" + headStr + "X ";
+                }
+
 
                 for (int i = 0; i < m_InsertValue.Count; i++)
-			    {
-    			     contentText += ", " + m_InsertValue[i] + " ";
-			    }
+                {
+                    contentText += ", " + m_InsertValue[i] + " ";
+                }
                 contentText = contentText.TrimStart(',');
             }
             else
@@ -1150,41 +1260,45 @@ namespace Dejun.DataProvider.Table
         /// <returns></returns>
         public void AllInitialized()
         {
-            
+
             this.areaName_initialized = true;
-            
+
             this.iD_initialized = true;
-            
+
             this.addID_initialized = true;
-            
+
             this.addTime_initialized = true;
-            
+
             this.title_initialized = true;
-            
+
             this.typeID_initialized = true;
-            
+
             this.areaID_initialized = true;
-            
+
             this.switchIP_initialized = true;
-            
+
             this.switchPort_initialized = true;
-            
+
             this.switchIndex_initialized = true;
-            
+
             this.switchGroup_initialized = true;
-            
+
             this.orderID_initialized = true;
-            
+
             this.state_initialized = true;
-            
+
             this.brief_initialized = true;
-            
+
             this.isdele_initialized = true;
-            
+
             this.exhibitionID_initialized = true;
-            
+
+            this.y_initialized = true;
+
+            this.x_initialized = true;
+
         }
-    
+
         private bool CheckColumn(IDataReader dr, string columnName)
         {
             for (int i = 0; i < dr.FieldCount; i++)
@@ -1255,12 +1369,12 @@ namespace Dejun.DataProvider.Table
         /// <param name="page">页面对象 </param>
         public void AutoForm(System.Web.UI.Page page)
         {
-            
-            if(page.Request["areaName"] != null)
+
+            if (page.Request["areaName"] != null)
             {
                 if (this.areaName_initialized)
                 {
-                    if(page.Request["areaName"] != "")
+                    if (page.Request["areaName"] != "")
                     {
                         this.AreaName = Convert.ToString(page.Request["areaName"]);
                     }
@@ -1275,12 +1389,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["iD"] != null)
+
+            if (page.Request["iD"] != null)
             {
                 if (this.iD_initialized)
                 {
-                    if(page.Request["iD"] != "")
+                    if (page.Request["iD"] != "")
                     {
                         this.ID = Convert.ToInt32(page.Request["iD"]);
                     }
@@ -1295,12 +1409,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["addID"] != null)
+
+            if (page.Request["addID"] != null)
             {
                 if (this.addID_initialized)
                 {
-                    if(page.Request["addID"] != "")
+                    if (page.Request["addID"] != "")
                     {
                         this.AddID = Convert.ToInt32(page.Request["addID"]);
                     }
@@ -1315,12 +1429,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["addTime"] != null)
+
+            if (page.Request["addTime"] != null)
             {
                 if (this.addTime_initialized)
                 {
-                    if(page.Request["addTime"] != "")
+                    if (page.Request["addTime"] != "")
                     {
                         this.AddTime = Convert.ToDateTime(page.Request["addTime"]);
                     }
@@ -1335,12 +1449,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["title"] != null)
+
+            if (page.Request["title"] != null)
             {
                 if (this.title_initialized)
                 {
-                    if(page.Request["title"] != "")
+                    if (page.Request["title"] != "")
                     {
                         this.Title = Convert.ToString(page.Request["title"]);
                     }
@@ -1355,12 +1469,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["typeID"] != null)
+
+            if (page.Request["typeID"] != null)
             {
                 if (this.typeID_initialized)
                 {
-                    if(page.Request["typeID"] != "")
+                    if (page.Request["typeID"] != "")
                     {
                         this.TypeID = Convert.ToInt32(page.Request["typeID"]);
                     }
@@ -1375,12 +1489,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["areaID"] != null)
+
+            if (page.Request["areaID"] != null)
             {
                 if (this.areaID_initialized)
                 {
-                    if(page.Request["areaID"] != "")
+                    if (page.Request["areaID"] != "")
                     {
                         this.AreaID = Convert.ToInt32(page.Request["areaID"]);
                     }
@@ -1395,12 +1509,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["switchIP"] != null)
+
+            if (page.Request["switchIP"] != null)
             {
                 if (this.switchIP_initialized)
                 {
-                    if(page.Request["switchIP"] != "")
+                    if (page.Request["switchIP"] != "")
                     {
                         this.SwitchIP = Convert.ToString(page.Request["switchIP"]);
                     }
@@ -1415,12 +1529,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["switchPort"] != null)
+
+            if (page.Request["switchPort"] != null)
             {
                 if (this.switchPort_initialized)
                 {
-                    if(page.Request["switchPort"] != "")
+                    if (page.Request["switchPort"] != "")
                     {
                         this.SwitchPort = Convert.ToInt32(page.Request["switchPort"]);
                     }
@@ -1435,12 +1549,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["switchIndex"] != null)
+
+            if (page.Request["switchIndex"] != null)
             {
                 if (this.switchIndex_initialized)
                 {
-                    if(page.Request["switchIndex"] != "")
+                    if (page.Request["switchIndex"] != "")
                     {
                         this.SwitchIndex = Convert.ToInt32(page.Request["switchIndex"]);
                     }
@@ -1455,12 +1569,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["switchGroup"] != null)
+
+            if (page.Request["switchGroup"] != null)
             {
                 if (this.switchGroup_initialized)
                 {
-                    if(page.Request["switchGroup"] != "")
+                    if (page.Request["switchGroup"] != "")
                     {
                         this.SwitchGroup = Convert.ToInt32(page.Request["switchGroup"]);
                     }
@@ -1475,12 +1589,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["orderID"] != null)
+
+            if (page.Request["orderID"] != null)
             {
                 if (this.orderID_initialized)
                 {
-                    if(page.Request["orderID"] != "")
+                    if (page.Request["orderID"] != "")
                     {
                         this.OrderID = Convert.ToInt64(page.Request["orderID"]);
                     }
@@ -1495,12 +1609,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["state"] != null)
+
+            if (page.Request["state"] != null)
             {
                 if (this.state_initialized)
                 {
-                    if(page.Request["state"] != "")
+                    if (page.Request["state"] != "")
                     {
                         this.State = Convert.ToInt32(page.Request["state"]);
                     }
@@ -1515,12 +1629,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["brief"] != null)
+
+            if (page.Request["brief"] != null)
             {
                 if (this.brief_initialized)
                 {
-                    if(page.Request["brief"] != "")
+                    if (page.Request["brief"] != "")
                     {
                         this.Brief = Convert.ToString(page.Request["brief"]);
                     }
@@ -1535,12 +1649,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["isdele"] != null)
+
+            if (page.Request["isdele"] != null)
             {
                 if (this.isdele_initialized)
                 {
-                    if(page.Request["isdele"] != "")
+                    if (page.Request["isdele"] != "")
                     {
                         this.Isdele = Convert.ToInt32(page.Request["isdele"]);
                     }
@@ -1555,12 +1669,12 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
-            if(page.Request["exhibitionID"] != null)
+
+            if (page.Request["exhibitionID"] != null)
             {
                 if (this.exhibitionID_initialized)
                 {
-                    if(page.Request["exhibitionID"] != "")
+                    if (page.Request["exhibitionID"] != "")
                     {
                         this.ExhibitionID = Convert.ToInt32(page.Request["exhibitionID"]);
                     }
@@ -1575,7 +1689,47 @@ namespace Dejun.DataProvider.Table
                 }
             }
 
-            
+
+            if (page.Request["y"] != null)
+            {
+                if (this.y_initialized)
+                {
+                    if (page.Request["y"] != "")
+                    {
+                        this.Y = Convert.ToDouble(page.Request["y"]);
+                    }
+                    else
+                    {
+                        this.y_initialized = false;
+                    }
+                }
+                else
+                {
+                    this.Y = Convert.ToDouble(page.Request["y"]);
+                }
+            }
+
+
+            if (page.Request["x"] != null)
+            {
+                if (this.x_initialized)
+                {
+                    if (page.Request["x"] != "")
+                    {
+                        this.X = Convert.ToDouble(page.Request["x"]);
+                    }
+                    else
+                    {
+                        this.x_initialized = false;
+                    }
+                }
+                else
+                {
+                    this.X = Convert.ToDouble(page.Request["x"]);
+                }
+            }
+
+
         }
 
         //add by dejun--2011-6-21

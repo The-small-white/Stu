@@ -18,7 +18,7 @@ public partial class Reserve_weixinRes : System.Web.UI.Page
         }
         int SeviceID = Convert.ToInt32(this.Request["seviceID"]);
         string sn = RequestString.NoHTML(Convert.ToString(this.Request["sn"]));
-        if (!SysConfig.IsTrueSn(SeviceID, sn))
+        if (!SysConfig.IsTrueSn(SeviceID, sn))//对比加密后是否对照
         {
             json = "{\"state\":\"false\", \"msg\":\"加密错误\"}";
 
@@ -37,7 +37,7 @@ public partial class Reserve_weixinRes : System.Web.UI.Page
                 int DateType = Convert.ToInt32(Request["datetype"]);
                 
                 DateTime restime = Convert.ToDateTime(Request["restime"]);
-                int DateAllCount = GetAllCount(DateType);
+                int DateAllCount = GetAllCount(DateType);//根据ID查询是否已经有过记录
                 if (count > DateAllCount)
                 {
                     json = "{\"state\":\"false\", \"msg\":\"人数超过最大参观人数\"}";
@@ -54,7 +54,7 @@ public partial class Reserve_weixinRes : System.Web.UI.Page
                     msg.ReserveTime = restime;
                     msg.ReserveName = name;
                     msg.States = 0;
-                    int id = TableOperate<ReserveMsg>.InsertReturnID(msg);
+                    int id = TableOperate<ReserveMsg>.InsertReturnID(msg);//将预约数据插入并返回
                     if (id > 0)
                     {
                         json = "{\"state\":\"true\", \"msg\":\"预约成功！\"}";
@@ -70,10 +70,10 @@ public partial class Reserve_weixinRes : System.Web.UI.Page
                 int DateType = Convert.ToInt32(Request["datetype"]);
                 DateTime restime = Convert.ToDateTime(Request["restime"]);
                 ReserveMsg condition = new ReserveMsg();
-                condition.AddConditon("DateDiff(dd,ReserveTime,'"+ restime + "')=0");
+                condition.AddConditon("DateDiff(dd,ReserveTime,'"+ restime + "')=0");//添加时间条件
                 condition.DateType = DateType;
                 condition.States = 1;
-                int count = TableOperate<ReserveMsg>.GetCountValue(condition);
+                int count = TableOperate<ReserveMsg>.GetCountValue(condition);//查询获取总数
                 if (count > 0)
                 {
                     json = "{\"false\":\"true\", \"msg\":\"今日预约已满！\"}";

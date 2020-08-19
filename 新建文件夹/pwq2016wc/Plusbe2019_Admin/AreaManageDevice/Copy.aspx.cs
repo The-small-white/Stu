@@ -1,8 +1,8 @@
 using Dejun.DataProvider.Sql2005;
 using Dejun.DataProvider.Table;
 using System;
-using System.Web.Script.Serialization;
 using System.Collections.Generic;
+using System.Web.Script.Serialization;
 
 
 public partial class Admin_AreaManageLight_Copy : AdminPage
@@ -21,9 +21,9 @@ public partial class Admin_AreaManageLight_Copy : AdminPage
             if (light.ID > 0)
             {
                 Device newlight = new Device();
-                
+
                 newlight = light;
-                newlight.NoID();
+                // newlight.NoID();2020/08/17
                 newlight.Name = light.Name + "-复制";
                 newlight.AddTime = DateTime.Now;
                 newlight.AddID = AdminMethod.AdminID;
@@ -34,20 +34,20 @@ public partial class Admin_AreaManageLight_Copy : AdminPage
                 {
                     result.isOk = true;
                 }
-               
-            }
-                   
 
-            
-          
-           
+            }
+
+
+
+
+
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             result.isOk = false;
             result.msg = ex.ToString();
         }
-     
+
         Response.ContentType = "text/json";
         Response.Write(js.Serialize(result));
         Response.End();

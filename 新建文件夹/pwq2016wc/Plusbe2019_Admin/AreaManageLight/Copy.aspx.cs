@@ -23,7 +23,7 @@ public partial class Admin_AreaManageLight_Copy : AdminPage
                 Light newlight = new Light();
                 
                 newlight = light;
-                newlight.NoID();
+               // newlight.NoID();2020/08/17
                 newlight.Title = light.Title + "-复制";
                 newlight.AddTime = DateTime.Now;
                 newlight.AddID = AdminMethod.AdminID;

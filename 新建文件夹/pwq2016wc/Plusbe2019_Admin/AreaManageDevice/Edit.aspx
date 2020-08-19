@@ -170,6 +170,25 @@
                                 </div>
                             </div>
 
+                          <%--  <div class="form-group">
+                                <label class="col-sm-2 control-label">X坐标：</label>
+
+                                <div class="col-sm-5">
+                                    <input type="number" class="form-control required" name="X" value="<%#news.X %>" />
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Y坐标：</label>
+
+                                <div class="col-sm-5">
+                                    <input type="number" class="form-control required" name="Y" value="<%#news.Y %>" />
+                                </div>
+                            </div>--%>
+
+
+
+
                      
 
                                  <div class="form-group TYJ1">

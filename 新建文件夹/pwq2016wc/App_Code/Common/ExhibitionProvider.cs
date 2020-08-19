@@ -134,18 +134,13 @@ public class ExhibitionProvider
     {
         List<Exhibition> channelData = new List<Exhibition>();
         List<int> idList = new List<int>();
-
         //查询数据
         Exhibition value = new Exhibition();
         Exhibition conditon = new Exhibition();
-
-       
-
         if (rootID > 0)
         {
             conditon.RootID = rootID;
         }
-
         List<Exhibition> oldTypeData = TableOperate<Exhibition>.Select(value, conditon, 0, " order by Depth, ParentID, ID DESC ");
 
         for (int i = 0; i < oldTypeData.Count; i++)

@@ -16,14 +16,15 @@ public partial class API_FaceCheck : System.Web.UI.Page
         try
         {
             string act = Convert.ToString(Request["act"]);
-            if (act == "delete")
+           
+                if (act == "delete")
             {
                 int id = Convert.ToInt32(Request["id"]);
                 string json = "{\"type\":\"delete\", \"file\":\"\",\"id\":" + id + "}";
                 json = json.Replace("\\", "/");
-                string url = string.Format("http://127.0.0.1:5478/?json={0}", HttpUtility.UrlEncode(json));
+                string url = string.Format("http://127.0.0.1:5478/?json={0}", HttpUtility.UrlEncode(json));//进行特定格式的编码
                 string str = HttpHelp.Get(url);
-                JsonData DataList = JsonMapper.ToObject(str);
+                JsonData DataList = JsonMapper.ToObject(str);//解析下json
                 string state = DataList["state"].ToString();
                 if (state == "true")
                 {
@@ -39,7 +40,7 @@ public partial class API_FaceCheck : System.Web.UI.Page
                 {
                     headimg= headimg.Replace("data:image/png;base64,", "").Replace("data:image/jgp;base64,", "").Replace("data:image/jpg;base64,", "").Replace("data:image/jpeg;base64,", "");//将base64头部信息替换
                     string strbaser64 = headimg.Replace(" ", "+");//https://www.cnblogs.com/jueye/archive/2012/07/02/Url.html
-                    string path = Request.MapPath("/UserFacePic");
+                    string path = Request.MapPath("/UserFacePic");// 将指定的虚拟路径映射到物理路径。
                     string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff")+".jpg";
                     string filePath = Path.Combine(path, fileName);
                     string headpic = "UserFacePic/" + fileName;
@@ -75,11 +76,7 @@ public partial class API_FaceCheck : System.Web.UI.Page
                                        
                                     }
                                 }
-
-
-
                             }
-
                         }
                         else
                         {

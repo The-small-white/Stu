@@ -13,7 +13,7 @@ public partial class Plusbe2019_Admin_login : System.Web.UI.Page
         
         GlobalConfig condition = new GlobalConfig();
         condition.ID = 1;
-        GlobalConfig global = TableOperate<GlobalConfig>.GetRowData(condition);
+        GlobalConfig global = TableOperate<GlobalConfig>.GetRowData(condition);//对表的操作
         if (global.ID > 0)
         {
             if (global.UserIP == 1 && !AdminMethod.IsWhite())

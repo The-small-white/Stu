@@ -29,7 +29,7 @@ public class APICamera : IHttpHandler
             result += "\r\n接收到的数据:\r\n" + xmlStr + "\r\n";
             CloudLog cloud = new CloudLog();
             cloud.Brief = result;
-                TableOperate<CloudLog>.Insert(cloud);
+            TableOperate<CloudLog>.Insert(cloud);
             if (string.IsNullOrEmpty(xmlStr))
             {
                 ResponseEnd("null");
@@ -46,7 +46,7 @@ public class APICamera : IHttpHandler
             }
 
             //获取值
-            string cameraName = doc.GetElementsByTagName("channelName")[0].InnerText;
+            string cameraName = doc.GetElementsByTagName("channelName")[0].InnerText;//只输出文本
             string macAddress = doc.GetElementsByTagName("macAddress")[0].InnerText;
             string ipAddress = doc.GetElementsByTagName("ipAddress")[0].InnerText;
             DateTime time = Convert.ToDateTime(doc.GetElementsByTagName("RealTime")[0].FirstChild.InnerText);
@@ -85,8 +85,7 @@ public class APICamera : IHttpHandler
     private void UpdatePeopleCount(PeopleCount pc)
     {
         DateTime beginTime = new DateTime(pc.CountTime.Year, pc.CountTime.Month, pc.CountTime.Day, pc.CountTime.Hour, 0, 0);
-        DateTime endTime = beginTime.AddHours(1);
-
+        DateTime endTime = beginTime.AddHours(1);//在开始时间上加一小时
         PeopleCount condition = new PeopleCount();
         condition.AddConditon(" and CountTime>= '" + beginTime + "' and CountTime< '" + endTime + "' and CameraID=" + pc.CameraID);
         PeopleCount newPc = TableOperate<PeopleCount>.GetRowData(condition);
@@ -101,16 +100,15 @@ public class APICamera : IHttpHandler
             //把查出来的数据进行增加
             newPc.ExitNum += (pc.ExitNum - exitNum);
             newPc.EnterNum += (pc.EnterNum - enterNum);
-            TableOperate<PeopleCount>.Update(newPc);
+            TableOperate<PeopleCount>.Update(newPc);//更新下查出来的数据
         }
         else //不存在,直接插入新数据
         {
             pc.ExitNum -= exitNum;
             pc.EnterNum -= enterNum;
-            TableOperate<PeopleCount>.InsertReturnID(pc);
+            TableOperate<PeopleCount>.InsertReturnID(pc);//插入并返回插入信息的ID
         }
     }
-
     private void GetCountNum(out int enterNum, out int exitNum, PeopleCount pc)
     {
         enterNum = exitNum = 0;
@@ -153,8 +151,8 @@ public class APICamera : IHttpHandler
     {
         if (Request.RequestType.ToUpper() == "POST")
         {
-            Stream stream = Request.InputStream;
-            using (StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8))
+            Stream stream = Request.InputStream;//获取传入的 HTTP 实体主体的内容。
+            using (StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8))//将传过来的值转换成UTF8格式
             {
                 return reader.ReadToEnd();
             }
