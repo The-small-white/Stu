@@ -10,7 +10,7 @@ namespace Three.Models
     /// </summary>
     public class CompanySummary
     {
-        public int EmployeeCount { get; set; }//员工人数
+        public int EmployeeCount { get; set; }//员工总人数
         public int AverageDepartmentEmployeeCount { get; set; }//每个部门平均人数
     }
 }

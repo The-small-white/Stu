@@ -47,7 +47,10 @@ namespace Three.Services
         {
             return Task.Run(() => _departments.FirstOrDefault(x => x.Id == id));
         }
-
+        /// <summary>
+        /// 部门平均人数方法
+        /// </summary>
+        /// <returns></returns>
         public Task<CompanySummary> GetCompanySummary()
         {
             return Task.Run(() =>

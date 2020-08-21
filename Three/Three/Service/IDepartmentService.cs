@@ -14,7 +14,10 @@ namespace Three.Service
         Task<IEnumerable<Department>> GetAll();
 
         Task<Department> GetById(int id);
-
+        /// <summary>
+        /// 获取公司部门平均人数
+        /// </summary>
+        /// <returns></returns>
         Task<CompanySummary> GetCompanySummary();
         Task Add(Department department);
     }

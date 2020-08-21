@@ -59,3 +59,4 @@ F:\Stu\Three\Three\obj\Debug\netcoreapp3.1\Three.pdb
 F:\Stu\Three\Three\obj\Debug\netcoreapp3.1\Three.genruntimeconfig.cache
 F:\Stu\Three\Three\obj\Debug\netcoreapp3.1\Three.csproj.CopyComplete
 F:\Stu\Three\Three\obj\Debug\netcoreapp3.1\Three.csprojAssemblyReference.cache
+F:\Stu\Three\Three\bin\Debug\netcoreapp3.1\nick.json
