@@ -16,9 +16,10 @@
     </div>
 </div>
 <div class="row">
-    @*<div class="col-md-2">
-        @await Component.InvokeAsync("CompanySummary", new { title = "Summary"})
-    </div>*@
+    <div class="col-md-2">
+        @await Component.InvokeAsync("CompanySummary", new { title = "部门列表页"})
+        <vc:company-summary title="汇总2"></vc:company-summary>
+    </div>
     <div class="col-md-4 offset-md-2">
         @*指定需要的action名字*@
         <a asp-action="Add">Add</a>

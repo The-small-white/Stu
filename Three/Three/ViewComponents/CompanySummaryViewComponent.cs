@@ -15,10 +15,19 @@ namespace Three.ViewComponents
         /// </summary>
         private readonly IDepartmentService _departmentService;
 
+        /// <summary>
+        /// 构造
+        /// </summary>
+        /// <param name="departmentService"></param>
         public CompanySummaryViewComponent(IDepartmentService departmentService)
         {
             _departmentService = departmentService;
         }
+        /// <summary>
+        /// 异步调用
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
         public async Task<IViewComponentResult> InvokeAsync(string title)
         {
             ViewBag.Title = title;
