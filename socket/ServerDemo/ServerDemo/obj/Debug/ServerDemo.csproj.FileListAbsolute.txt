@@ -1,0 +1,10 @@
+F:\Stu\socket\ServerDemo\ServerDemo\bin\Debug\ServerDemo.exe.config
+F:\Stu\socket\ServerDemo\ServerDemo\bin\Debug\ServerDemo.exe
+F:\Stu\socket\ServerDemo\ServerDemo\bin\Debug\ServerDemo.pdb
+F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.Form1.resources
+F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.Properties.Resources.resources
+F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.csproj.GenerateResource.cache
+F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.csproj.CoreCompileInputs.cache
+F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.exe
+F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.pdb
+F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.csprojAssemblyReference.cache
