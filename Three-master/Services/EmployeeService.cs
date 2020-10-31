@@ -9,6 +9,9 @@ namespace Three.Services
 {
     public class EmployeeService:IEmployeeService
     {
+        /// <summary>
+        /// 只读员工list
+        /// </summary>
         private readonly List<Employee> _employees = new List<Employee>();
         public EmployeeService()
         {
