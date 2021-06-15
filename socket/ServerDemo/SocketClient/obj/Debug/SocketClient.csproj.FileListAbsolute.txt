@@ -7,4 +7,3 @@ F:\Stu\socket\ServerDemo\SocketClient\obj\Debug\SocketClient.csproj.GenerateReso
 F:\Stu\socket\ServerDemo\SocketClient\obj\Debug\SocketClient.csproj.CoreCompileInputs.cache
 F:\Stu\socket\ServerDemo\SocketClient\obj\Debug\SocketClient.exe
 F:\Stu\socket\ServerDemo\SocketClient\obj\Debug\SocketClient.pdb
-F:\Stu\socket\ServerDemo\SocketClient\obj\Debug\SocketClient.csprojAssemblyReference.cache

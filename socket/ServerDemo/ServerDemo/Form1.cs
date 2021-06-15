@@ -15,6 +15,7 @@ namespace ServerDemo
 {
     public partial class Form1 : Form
     {
+        //储存链接记录
         List<Socket> clientList = new List<Socket>();
         public Form1()
         {
@@ -29,10 +30,10 @@ namespace ServerDemo
             Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             //绑定ip和端口号
             server.Bind(new IPEndPoint(IPAddress.Parse(textIP.Text.Trim()), Int32.Parse(textPoint.Text.Trim())));
-            //监听挂起链接
+            //监听挂起链接（最大长度为10）
             server.Listen(10);
-            //创建线程池调用链接Socket方法
-            ThreadPool.QueueUserWorkItem(new WaitCallback(AcceptSocketClient), server);
+            //创建线程池调用链接Socket方法         
+            ThreadPool.QueueUserWorkItem(new WaitCallback(AcceptSocketClient),server);
             MessageBox.Show("启动成功");
 
         }
@@ -69,6 +70,12 @@ namespace ServerDemo
                 try
                 {
                     len = client.Receive(data, SocketFlags.None);//接收到的字节数
+                    string msg = Encoding.Default.GetString(data, 0, len);
+
+                    DateTime t = DateTime.Now;
+
+                    AppendToManinBoardText(string.Format("客户端：{0}", msg));
+                    AppendToManinBoardText(string.Format("时间：{0}", t));
                 }
                 catch (Exception ex)
                 {
@@ -93,20 +100,9 @@ namespace ServerDemo
                         client.Close();
                     }
                     return;
-                }
-                string msg = Encoding.Default.GetString(data, 0, len);
-
-                DateTime t = DateTime.Now;
-
-                AppendToManinBoardText(string.Format("客户端：{0}", msg));
-                AppendToManinBoardText(string.Format("时间：{0}", t));
+                }            
             }
-
         }
-
-
-
-
         /// <summary>
         /// 处理跨线程访问(同时访问同一控件时)
         /// </summary>
@@ -123,11 +119,15 @@ namespace ServerDemo
             {
                 textBox1.Text = txt + "\r\n" + textBox1.Text;
             }
-
         }
-
+        /// <summary>
+        /// 发送按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+            
             //循环已存在的socket链接
             foreach (Socket proxSocket in clientList)
             {
@@ -143,6 +143,8 @@ namespace ServerDemo
                     //3.把原始的字节数组放到最终数组中
                     Buffer.BlockCopy(data, 0, result, 1, data.Length);
                     proxSocket.Send(result, 0, result.Length, SocketFlags.None);
+                 //   proxSocket.Send(data , 0, data.Length, SocketFlags.None);
+
                 }
             }
         }
@@ -155,9 +157,20 @@ namespace ServerDemo
                 //先判断是否链接
                 if (proxSocket.Connected)
                 {
+                    //1.把原始字符串转换成字节数组
+                    string msg ="抖动窗口";
+                    byte[] data = Encoding.Default.GetBytes(msg);
+                    //2.对原始字节数组加上协议头部字节
+                    byte[] result = new byte[data.Length + 1];
+                    result[0] = 2;
+                    //3.把原始的字节数组放到最终数组中
+                    Buffer.BlockCopy(data, 0, result, 1, data.Length);
+                    proxSocket.Send(result, 0, result.Length, SocketFlags.None);
+
+
 
                     //发送协议头为2
-                    proxSocket.Send(new byte[] { 2 }, SocketFlags.None);
+                    //proxSocket.Send(new byte[] { 2 }, SocketFlags.None);
                 }
 
 

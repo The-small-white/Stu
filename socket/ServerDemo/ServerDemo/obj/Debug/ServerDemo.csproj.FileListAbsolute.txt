@@ -7,4 +7,3 @@ F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.csproj.GenerateResource
 F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.csproj.CoreCompileInputs.cache
 F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.exe
 F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.pdb
-F:\Stu\socket\ServerDemo\ServerDemo\obj\Debug\ServerDemo.csprojAssemblyReference.cache
