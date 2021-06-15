@@ -1,0 +1,9 @@
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\bin\Debug\MyFirstSqlServer.exe
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\bin\Debug\MyFirstSqlServer.pdb
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\obj\Debug\MyFirstSqlServer.ProjectInstaller.resources
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\obj\Debug\MyFirstSqlServer.ServiceTest.resources
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\obj\Debug\MyFirstSqlServer.csproj.GenerateResource.cache
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\obj\Debug\MyFirstSqlServer.csproj.CoreCompileInputs.cache
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\obj\Debug\MyFirstSqlServer.exe
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\obj\Debug\MyFirstSqlServer.pdb
+F:\Stu\server\MyFirstSqlServer\MyFirstSqlServer\obj\Debug\MyFirstSqlServer.csprojAssemblyReference.cache
